@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Crear nuevo proveedor')
+@section('title', 'Crear nueva categoria')
 @section('body')
-    <h1>Crear nuevo proveedor</h1>
+    <h1>Crear nueva categoria</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -12,13 +12,11 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('ProvidersController@providersCreate') }}" method="POST">
+    <form action="{{ route('CategorysController@categoryCreate') }}" method="POST">
         @csrf
-        <label>Codigo:</label><br>
-        <input type="text" required min="1" max="6" name="code"><br><br>
 
         <label>Nombre:</label><br>
-        <input type="text" name="name" required=><br><br>
+        <input type="text" name="name" required min="1"><br><br>
 
         <label>Descripcion:</label><br>
         <input type="text" name="description"><br><br>

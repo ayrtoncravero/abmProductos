@@ -1,28 +1,44 @@
 @extends('layouts.app')
 
-@section('title', 'Categorias')
+@section('title', 'Crear nuevo producto')
 @section('body')
-    <p>Crear producto, aca va el form, y falta hacer el post para pegarle con la creacion del producto, ver si eso va en el servive</p>
-    <h1>Crear producto</h1>
-    <form action="ProductsController@createProduct" method="POST">
+    <h1>Crear nuevo producto</h1>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('ProductsController@productsCreate') }}" method="POST">
         @csrf
-        <label for="codeProduct">Codigo:</label><br>
-        <input type="number" id="codeProduct" name="codeProduct"><br><br>
+        <label>Codigo:</label><br>
+        <input type="text" name="code" required min="1" max="6" ><br><br>
 
-        <label for="nameProduct">Nombre:</label><br>
-        <input type="text" id="nameProduct" name="nameProduct"><br><br>
+        <label>Nombre:</label><br>
+        <input type="text" name="name" required min="1"><br><br>
 
-        <label for="descriptionProduct">Descripcion:</label><br>
-        <input type="text" id="descriptionProduct" name="descriptionProduct"><br><br>
+        <label>Descripcion:</label><br>
+        <input type="text" name="description" required min="1"><br><br>
 
-        <label for="priceProduct">Precio:</label><br>
-        <input type="number" id="priceProduct" name="priceProduct"><br><br>
+        <label>Precio:</label><br>
+        <input type="number" name="price" required min="1"><br><br>
 
-        <label for="providerProduct">Proveedor:</label><br>
-        <input type="text" id="providerProduct" name="providerProduct"><br><br>
+        <label>Proveedores:</label><br>
+        <select name="provider">
+            @foreach($products as $product)
+                <option>{{ $product->getProvider }}</option>
+            @endforeach
+        </select><br>
 
-        <label for="categoryProduct">Categoria:</label><br>
-        <input type="text" id="categoryProduct" name="categoryProduct"><br><br>
+        <label>Categorias:</label><br>
+        <select name="category">
+            @foreach($categorys as $category)
+                <option>{{ $category->getCategory }}</option>
+            @endforeach
+        </select><br>
 
         <input type="submit" value="Crear">
     </form>

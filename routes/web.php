@@ -20,31 +20,33 @@ Route::get('/', function () {
 #Home
 Route::get('/home', 'HomeController@home')->name('HomeController@home');
 
-#Providers
+#Provider
 Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
-Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
-Route::post('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
 Route::get('/providers/edit', 'ProvidersController@providersEdit')->name('ProvidersController@providersEdit');
 Route::get('/providers/destroy', 'ProvidersController@providersDestroy')->name('ProvidersController@providersDestroy');
+Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
+Route::post('/providers', 'ProvidersController@providersCreate')->name('ProvidersController@providersCreate');
 
 #Category
-Route::get('/category', 'CategoryController@category')->name('CategoryController@category');
-Route::get('/category/edit', 'CategoryController@categoryEdit')->name('CategoryController@categoryEdit');
-Route::get('/category/destroy', 'CategoryController@categoryDestroy')->name('CategoryController@categoryDestroy');
-Route::get('/category/new', 'CategoryController@categoryNew')->name('CategoryController@categoryNew');
-Route::post('/category', 'CategoryController@category')->name('CategoryController@category');
+Route::get('/category', 'CategorysController@categorys')->name('CategorysController@categorys');
+Route::get('/category/edit', 'CategorysController@categorysEdit')->name('CategorysController@categorysEdit');
+Route::get('/category/destroy', 'CategorysController@categorysDestroy')->name('CategorysController@categorysDestroy');
+Route::get('/category/new', 'CategorysController@categorysNew')->name('CategorysController@categorysNew');
+Route::post('/category', 'CategorysController@categoryCreate')->name('CategorysController@categoryCreate');
 
 #View products
 Route::get('/products', 'ProductsController@products')->name('ProductsController@products');
-Route::get('/products/edit', 'ProductsController@productsEdit')->name('ProductsController@editProducts');
-Route::get('/products/destroy', 'ProductsController@productsDestroy')->name('ProductsController@deleteProducts');
-Route::get('/products/new', 'ProductsController@productsNew')->name('ProductsController@createProductsView');
-Route::post('/products', 'ProductsController@products')->name('ProductsController@createProducts');
+Route::post('/products/edit/{id}', 'ProductsController@productsEdit')->name('ProductsController@productsEdit');
+Route::get('/products/edit/{id}', 'ProductsController@productsViewEdit')->name('ProductsController@productsViewEdit');
+Route::post('/products/destroy/{id}', 'ProductsController@productsDestroy')->name('ProductsController@productsDestroy');
+Route::get('/products/new', 'ProductsController@productsNew')->name('ProductsController@productsNew');
+Route::post('/products', 'ProductsController@productsCreate')->name('ProductsController@productsCreate');
+Route::get('/search', 'ProductsController@search')->name('ProductsController@search');
 
 #Dar de alta una compra
-Route::get('/purchase', 'PurchaseController@purchase')->name('PurchaseController@purchase');
-Route::post('/purchase', 'PurchaseController@purchase')->name('PurchaseController@purchase');
+Route::get('/purchases', 'PurchasesController@purchases')->name('PurchasesController@purchases');
+Route::post('/purchases', 'PurchasesController@purchasesCreate')->name('PurchasesController@purchasesCreate');
 
 #Ver informes
 Route::get('/reports', 'ReportsController@reports')->name('ReportsController@reports');
-Route::get('/reports/stock', 'StockController@stock')->name('StockController@stock');
+Route::get('/reports/stock', 'ReportsController@stock')->name('ReportsController@stock');

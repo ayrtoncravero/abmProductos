@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Categorias')
+@section('title', 'Eliminar producto')
 @section('body')
     <p>Eliminar producto</p>
 @endsection

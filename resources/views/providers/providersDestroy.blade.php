@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Eliminar proveedores')
+@section('title', 'Eliminar proveedor')
 @section('body')
-    <p>Eliminar proveedores</p>
+    <p>Eliminar proveedor</p>
 @endsection

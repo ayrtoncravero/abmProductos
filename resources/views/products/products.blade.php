@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Productos')
 @section('body')
     <h1>Todos los productos</h1>
 
+    <p>Buscador</p>
+    <form action="ProductsController@search" method="GET">
+        <label>Nombre:</label>
+        <input type="text" name="name"><br>
+
+        <label>Descripcion:</label>
+        <input type="text" name="description"><br>
+
+        <input type="submin" value="Buscar">
+    </form>
     <table class="egt">
         <tr>
             <th>Codigo</th>
@@ -15,37 +25,25 @@
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ URL::route('ProductsController@editProducts') }}">Editar</a></td>
-            <td><a href="{{ URL::route('ProductsController@deleteProducts') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ URL::route('ProductsController@editProducts') }}">Editar</a></td>
-            <td><a href="{{ URL::route('ProductsController@deleteProducts') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ URL::route('ProductsController@editProducts') }}">Editar</a></td>
-            <td><a href="{{ URL::route('ProductsController@deleteProducts') }}">Eliminar</a></td>
-        </tr>
+            @foreach($products as $product)
+                <tr>
+                    <td>{{  $product->getCode() }}</td>
+                    <td>{{  $product->getName() }}</td>
+                    <td>{{  $product->getPrice() }}</td>
+                    <td>{{  $product->getProvider() }}</td>
+                    <td>{{  $product->getCategory() }}</td>
+                    <td>
+                        <a href="{{ route('ProductsController@productsEdit', ['id' => $product->getId()]) }}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('ProductsController@productsDestroy', ['id' => $product->getId()]) }} method="POST">
+                        @csrf
+                        <input type="submit" value="Borrar">
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
     </table>
 
-    <a href="{{ URL::route('ProductsController@createProductsView') }}">Crear producto</a><br>
+    <a href="{{ route('ProductsController@productsNew') }}">Crear producto</a><br>
 @endsection
