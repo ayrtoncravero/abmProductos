@@ -2,5 +2,5 @@
 
 @section('title', 'Producto creado correctamente')
 @section('body')
-    <p>El producto: {{ $product->getName() }} fue creado correctamente</p>
+    <p>El producto: {{ $products->getName() }} fue creado correctamente</p>
 @endsection

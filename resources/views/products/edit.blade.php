@@ -11,7 +11,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('ProductsController@productsEdit', ['id' => $product->getId()]) }}" method="POST">
+    <form action="{{ route('ProductsController@update', ['id' => $product->getId()]) }}" method="POST">
         @csrf
         <label>Codigo:</label><br>
         <input type="text" name="code" value="{{ $product->getCode() }}"><br><br>

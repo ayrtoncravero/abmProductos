@@ -18,7 +18,7 @@
         <input type="text" required min="1" max="6" name="code"><br><br>
 
         <label>Nombre:</label><br>
-        <input type="text" name="name" required=><br><br>
+        <input type="text" name="name" required><br><br>
 
         <label>Descripcion:</label><br>
         <input type="text" name="description"><br><br>

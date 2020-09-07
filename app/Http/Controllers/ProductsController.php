@@ -4,116 +4,135 @@ namespace App\Http\Controllers;
 
 use App\Compra;
 use App\Producto;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
+use App\Repository\ProductService;
+use App\Repository\ProviderRepository;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Proveedor;
 
 class ProductsController extends Controller
 {
-    public function products()
+    #Reacomodando
+    public function productsNew(ProviderRepository $providerRepository, CategoryRepository $categoryRepository)
     {
-        $products = Producto::all();
-        return view('products/products', ['products' => $products]);
+        return view('products/productsNew', ['providers' => $providerRepository->allProviders(), 'categories' => $categoryRepository->allCategory()]);
     }
 
-    public function productsViewEdit(string $id)
+    public function create(Request $request, ProductService $service)
     {
-        $product = Producto::find($id);
+        //Esta validacion esta aqui solo por que es propia del code, per va tambien al service
+        $this->validateRequest($request);
 
-        $providers = Proveedor::query()->get()->all();
-        $category = Categoria::query()->get()->all();
+        $service->create($request->input('code'),
+            $request->input('name'),
+            $request->input('description'),
+            $request->input('price'),
+            $request->input('provider'),
+            $request->input('category')
+        );
 
-        return view('products/productsEdit', ['product' => $product, 'providers' => $providers, 'categories' => $category]);
+        //Retorno a la vista por que ya se creo el producto
+        return redirect(route('ProductsController@products'));
     }
 
-    public function productsEdit(Request $request, string $id)
+    public function products(ProductRepository $productRepository)
+    {
+        return view('products/products', ['products' => $productRepository->allProducts()]);
+    }
+
+    public function edit(string $id, ProductRepository $repository)
+    {
+        return view('edit', ['product' => $repository->searchFindOrFail($id)]);
+
+        #Antes
+        //$product = Producto::find($id);
+        //$providers = Proveedor::query()->get()->all();
+        //$category = Categoria::query()->get()->all();
+        //return view('products/productsEdit', ['product' => $product, 'providers' => $providers, 'categories' => $category]);
+    }
+
+    public function update(Request $request, string $id, ProductService $service)
     {
         $this->validateRequest($request);
 
-        $code = $request->input('code');
-        $name = $request->input('name');
-        $description = $request->input('description');
-        $price = $request->input('price');
-        $provider = $request->input('providers');
-        $category = $request->input('category');
+        $service->update($id, $request->input('code'), $request->input('name'), $request->input('description'), $request->input('price'), $request->input('provider'), $request->input('category'));
 
+        return redirect(route('ProductsController@products'));
 
-        $productEdit = Producto::find($id);
+        #Antes
+        //$code = $request->input('code');
 
-        $productEdit->setCode($code);
-        $productEdit->setName($name);
-        $productEdit->setDescription($description);
-        $productEdit->setPrice($price);
-        $productEdit->setProvider($provider);
-        $productEdit->setCategory($category);
+        //$product = Producto::query()->where('code', '=', $code)->first();
 
-        $productEdit->save();
+        //if (isset($product) && $product->getId() !== (int)$id) {
+        //    return redirect()->back()->withErrors(['code' => 'the code has already been taken']);
+        //}
 
-        return view('products/productsEdit', ['product' => $productEdit], ['id' => $id]);
+        //$name = $request->input('name');
+        //$description = $request->input('description');
+        //$price = $request->input('price');
+        //$providerId = $request->input('providers');
+        //$categoryId = $request->input('category');
+
+        //$productEdit = Producto::find($id);
+
+        //$provider = Proveedor::find($providerId);
+        //$category = Categoria::find($categoryId);
+
+        //$productEdit->setCode($code);
+        //$productEdit->setName($name);
+        //$productEdit->setDescription($description);
+        //$productEdit->setPrice($price);
+        //$productEdit->setProvider($provider);
+        //$productEdit->setCategory($category);
+
+        //$productEdit->save();
+
+        //return redirect(route('ProductsController@products'));
     }
 
-    public function productsDestroy(string $id)
-    {
-        $product = Producto::find($id);
-        $product->delete();
-        return redirect('products/products');
+    public function destroyView(string $id, ProductRepository $repository) {
+
+        return view('products/destroyView', ['product' =>$repository->searchFindOrFail($id)]);
     }
 
-    public function productsNew()
-    {
-        return view('products/productsNew');
-    }
-
-    public function productsCreate(Request $request)
-    {
-        $this->validateRequest($request);
-
-        $code = $request->input('code');
-        $name = $request->input('name');
-        $description = $request->input('description');
-        $price = $request->input('price');
-        $provider = $request->input('providers');
-        $category = $request->input('category');
-
-        $products = new Producto();
-
-        $products->setCode($code);
-        $products->setName($name);
-        $products->setDescription($description);
-        $products->setPrice($price);
-        $products->setProvider($provider);
-        $products->setCategory($category);
-
-        $products->save();
-
-        return view('products/productCreated', ['products' => $products]);
+    public function destroy(string $id, ProductRepository $repository) {
+        $repository->destroy($id);
+        return redirect(route('ProductsController@products'));
     }
 
     public function search(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
         ]);
 
         $product = Producto::where([
             ['name', 'like', '%' . $request->query('name') . '%'],
-            ['description', 'like', '%' . $request->query('description') . '%']
-
+            ['description', 'like', '%' . $request->query('name') . '%']
         ])->get();
 
         return view('products/products', ['product' => $product]);
     }
 
-    public function validateRequest(Request $request)
-    {
+    public function validateRequest(Request $request) {
         $request->validate([
-            'code' => 'required|unique:productos|min:1|max:6',
-            'name' => 'required|min:10',
-            'description' => 'required|min:10',
-            'price' => 'required|min:1',
+            'code' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
             'providers' => 'required',
             'category' => 'required',
         ]);
     }
+
+
+
+
+
+
+
+
 }

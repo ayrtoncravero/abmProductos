@@ -12,34 +12,12 @@
             <th>Precio</th>
             <th>Proveedor</th>
             <th>Categoria</th>
-            <th>cant.stock</th>
+            <th>cant stock</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
+        @foreach($products as $product)
+            <tr>
+                <td>{{ $product->getStock() }}</td>
+            </tr>
+        @endforeach
     </table>
 @endsection

@@ -21,6 +21,9 @@ class CreateProductosTable extends Migration
             $table->float('price');
             $table->string('providers');
             $table->string('category');
+            $table->integer('stock')->default(0);
+            $table->foreign('providers')->references('id')->on('proveedor');
+            $table->foreign('categorys')->references('id')->on('categoria');
             $table->timestamps();
         });
     }

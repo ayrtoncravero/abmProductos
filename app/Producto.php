@@ -38,17 +38,30 @@ class Producto extends Model
         return $this->price;
     }
 
-    public function setProvider(string $provider) {
-        $this->provider = $provider;
+    public function setProvider(Proveedor $provider) {
+        $this->provider()->associate($provider);
     }
-    public function getProvider() {
+    public function getProvider(): Proveedor {
         return $this->provider;
     }
 
-    public function setCategory(string $category) {
-        $this->category = $category;
+    public function setCategory(Categoria $category) {
+        $this->category()->associate($category);
     }
-    public function getCategory(): string {
+    public function getCategory(): Categoria {
         return $this->category;
+    }
+
+    //Stock
+    public function getStock() {
+        return $this->stock;
+    }
+
+    #Relation
+    public function category() {
+        return $this->belongsTo(Categoria::class);
+    }
+    public function provider() {
+        return $this->belongsTo(Proveedor::class);
     }
 }

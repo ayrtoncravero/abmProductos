@@ -8,25 +8,25 @@
         <tr>
             <th>Nombre</th>
             <th>Descripcion</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ route('CategorysController@categorysEdit') }}">Editar</a></td>
-            <td><a href="{{ route('CategorysController@categorysDestroy') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>1</td>
-            <td><a href="{{ route('CategorysController@categorysEdit') }}">Editar</a></td>
-            <td><a href="{{ route('CategorysController@categorysDestroy') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>1</td>
-            <td><a href="{{ route('CategorysController@categorysEdit') }}">Editar</a></td>
-            <td><a href="{{ route('CategorysController@categorysDestroy') }}">Eliminar</a></td>
-        </tr>
+            @foreach($categorys as $category)
+                <tr>
+                    <td>{{ $category->getName() }}</td>
+                    <td>{{ $category->getDescription() }}</td>
+                    <td>
+                        <a href="{{ route('CategorysController@categorysEdit', ['id' => $category->getId()]) }}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('CategorysController@categorysDestroy', ['id' => $category->getId()]) }}" method="POST">
+                            @csrf
+                            <input type="submit" value="Borrar">
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
     </table>
 
     <a href="{{ route('CategorysController@categorysNew') }}">Crear categoria</a><br>

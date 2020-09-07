@@ -10,27 +10,22 @@
             <th>Nombre</th>
             <th>Descripcion</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ route('ProvidersController@providersEdit') }}">Editar</a></td>
-            <td><a href="{{ route('ProvidersController@providersDestroy') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ route('ProvidersController@providersEdit') }}">Editar</a></td>
-            <td><a href="{{ route('ProvidersController@providersDestroy') }}">Eliminar</a></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>1</td>
-            <td>1</td>
-            <td><a href="{{ route('ProvidersController@providersEdit') }}">Editar</a></td>
-            <td><a href="{{ route('ProvidersController@providersDestroy') }}">Eliminar</a></td>
-        </tr>
+        @foreach($providers as $provider)
+            <tr>
+                <td>{{  $provider->getCode() }}</td>
+                <td>{{  $provider->getName() }}</td>
+                <td>{{  $provider->getDescription() }}</td>
+                <td>
+                    <a href="{{ route('ProductsController@providersEdit', ['id' => $provider->getId()]) }}">Editar</a>
+                </td>
+                <td>
+                    <form action="{{ route('ProvidersController@providersDestroy', ['id' => $provider->getId()]) }}" method="POST">
+                        @csrf
+                        <input type="submit" value="Borrar">
+                    </form>
+                </td>
+            </tr>
+        @endforeach
     </table>
 
     <a href="{{ route('ProvidersController@providersNew') }}">Crear proveedor</a><br>

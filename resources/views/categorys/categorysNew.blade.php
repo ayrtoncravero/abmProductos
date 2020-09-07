@@ -12,9 +12,9 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('CategorysController@categoryCreate') }}" method="POST">
-        @csrf
 
+    <form action="{{ route('CategorysController@categorysCreate') }}" method="POST">
+        @csrf
         <label>Nombre:</label><br>
         <input type="text" name="name" required min="1"><br><br>
 
