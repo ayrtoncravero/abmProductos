@@ -39,6 +39,7 @@ class CategoryService
     }
 
     public function validatorName(string $name) {
+        //TODO: change to laravel validations
         if ($name === null) {
             throw ValidationException::whithMessage([
                 'name' => 'Nombre no declarado',

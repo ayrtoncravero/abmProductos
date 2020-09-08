@@ -6,6 +6,7 @@ use Dotenv\Exception\ValidationException;
 
 class ProductService
 {
+    //TODO: change name to correctly name (Repository)
     private $productRespository;
 
     public function __construct(ProductRepository $productRepository)
@@ -15,6 +16,7 @@ class ProductService
 
     public function create(string $code, string $name, string $description,float $price, string $provider, string $category)
     {
+        //TODO: change to one only validation and validate all
         $this->validatorCode($code);
         $this->validatorName($name);
         $this->validatorDescription($description);
@@ -22,6 +24,7 @@ class ProductService
         $this->validatorProvider($provider);
         $this->validatorCategory($category);
 
+        //TODO: search once only a this
         //Para ver que exista en la DB el provider y la category
         $product = $this->productRespository->searchFindOrFail($provider);
         $product = $this->productRespository->searchFindOrFail($category);
@@ -32,6 +35,7 @@ class ProductService
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
+        //TODO: search provider and category and set in product
         $product->setProvider($provider);
         $product->setCategory($category);
 
@@ -53,6 +57,7 @@ class ProductService
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
+        //TODO: search provider and category and set in product
         $product->setProvider($provider);
         $product->setCategory($category);
 

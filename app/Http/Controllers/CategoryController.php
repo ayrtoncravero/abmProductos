@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function categorysNew(){
         return view('categorys/categorysNew');
     }
-
+    //TODO: change name to correctly english name (categories)
     public function categorysCreate(Request $request, CategotyService $service) {
 
         $this->validatorRequest($request);
@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $service->create($request->input('name'), $request->input('description'));
 
         return redirect(route('CategorysController@category'));
-
+        //TODO: delete comment's code
         //$name = $request->input('name');
         //$description = $request->input('description');
 
@@ -35,13 +35,14 @@ class CategoryController extends Controller
     }
 
     public function categorys(CategoryController $categoryRepository){
+        //TODO: change name to correctly english name (categories)
         return view('categorys', ['categorys' => $categoryRepository->allCategorys()]);
     }
 
     public function edit(string $id, CategoryRepository $repository){
 
         return view('edit', ['category' => $repository->searchFindOrFail($id)]);
-
+        //TODO: delete comment's code
         //$this->validatorRequest($request);
 
         //$name = $request->input('name');

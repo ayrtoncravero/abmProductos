@@ -23,7 +23,7 @@ class ProvidersController extends Controller
 
         return redirect(route('ProviderController@providers'));
 
-
+        //TODO: delete comment's code
         //$code = $request->input('code');
         //$name = $request->input('name');
         //$description = $request->input('description');
@@ -47,6 +47,7 @@ class ProvidersController extends Controller
 
         return view('edit', ['provider' => $repository->searchFindOrFail($id)]);
 
+        //TODO: delete comment's code
         //$this->validateRequest($request);
 
         //$code = $request->input('code');
@@ -89,7 +90,7 @@ class ProvidersController extends Controller
         $repository->destroy($id);
 
         return redirect(route('ProductController@provider'));
-
+        //TODO: delete comment's code
         //$provider = Proveedor::find($id);
         //$provider->delete();
         //return view('providers/provider');

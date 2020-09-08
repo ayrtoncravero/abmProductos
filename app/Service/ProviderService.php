@@ -12,6 +12,7 @@ class ProviderService
 {
     private $providerRepository;
 
+    //TODO: change name to correctly name (__construct)
     public function __contruct(ProviderRepository $providerRepository) {
         $this->providerRepository = $providerRepository;
     }

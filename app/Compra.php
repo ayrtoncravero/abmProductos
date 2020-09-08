@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+//TODO:  change name to english
 class Compra extends Model
 {
     public function getCode():string {

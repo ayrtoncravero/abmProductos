@@ -32,7 +32,7 @@ class ProductsController extends Controller
             $request->input('provider'),
             $request->input('category')
         );
-
+        //TODO: delete this comment
         //Retorno a la vista por que ya se creo el producto
         return redirect(route('ProductsController@products'));
     }
@@ -46,6 +46,7 @@ class ProductsController extends Controller
     {
         return view('edit', ['product' => $repository->searchFindOrFail($id)]);
 
+        //TODO: delete comment's code
         #Antes
         //$product = Producto::find($id);
         //$providers = Proveedor::query()->get()->all();
@@ -61,6 +62,7 @@ class ProductsController extends Controller
 
         return redirect(route('ProductsController@products'));
 
+        //TODO: delete comment's code
         #Antes
         //$code = $request->input('code');
 
@@ -108,7 +110,7 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-
+        //TODO: move into repository
         $product = Producto::where([
             ['name', 'like', '%' . $request->query('name') . '%'],
             ['description', 'like', '%' . $request->query('name') . '%']

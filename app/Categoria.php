@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+//TODO: change name to english
 class Categoria extends Model
 {
     public function getId() {

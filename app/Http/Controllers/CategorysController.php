@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 
+//TODO: verify if this controller it's able if not able deleted
 class CategorysController extends Controller
 {
     public function categorys() {
@@ -31,7 +32,7 @@ class CategorysController extends Controller
         $category = new Categoria($name, $description);
 
         $category->save();
-
+        //TODO: change to correctly english name (categories)
         return view('categorys/categorysCreated', ['category' => $category]);
     }
 }
