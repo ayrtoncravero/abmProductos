@@ -2,16 +2,17 @@
 
 @section('title', 'Categorias')
 @section('body')
-    <h1>Todas las categorias</h1>
+    <div class="container">
+        <h1>Todas las categorias</h1>
 
-    <table class="egt">
-        <tr>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
-        <tr>
+        <table class="egt">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            <tr>
             @foreach($categorys as $category)
                 <tr>
                     <td>{{ $category->getName() }}</td>
@@ -27,7 +28,8 @@
                     </td>
                 </tr>
             @endforeach
-    </table>
+        </table>
 
-    <a href="{{ route('CategorysController@categorysNew') }}">Crear categoria</a><br>
+        <a href="{{ route('CategorysController@categorysNew') }}">Crear categoria</a><br>
+    </div>
 @endsection

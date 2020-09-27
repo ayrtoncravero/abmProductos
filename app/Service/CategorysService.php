@@ -1,16 +1,16 @@
 <?php
 
-
 namespace App\Service;
 
+use App\Category;
+use App\Repository\CategoryRepository;
+use Illuminate\Http\Request;
 
-use App\Categoria;
-
-class CategoryService
+class CategorysService
 {
     private $categoryRepository;
 
-    public function __contruct(CategoryRepository $categoryRepository) {
+    public function __construct(CategoryRepository $categoryRepository) {
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -18,7 +18,7 @@ class CategoryService
     {
         $this->validatorName($name);
 
-        $category = new Categoria();
+        $category = new Category();
 
         $category->setName($name);
         $category->setDescription($description);
@@ -38,12 +38,15 @@ class CategoryService
         $this->categoryRepository->save($category);
     }
 
-    public function validatorName(string $name) {
-        //TODO: change to laravel validations
-        if ($name === null) {
-            throw ValidationException::whithMessage([
-                'name' => 'Nombre no declarado',
-            ]);
-        }
+    public function destroy(string $id, CategoryRepository $repository)
+    {
+        $category = $this->$repository->searchFindOrFail($id);
+        $category->delete();
+    }
+
+    private function validatorName(Request $request) {
+        $request->validate([
+            'name' => 'required',
+        ]);
     }
 }

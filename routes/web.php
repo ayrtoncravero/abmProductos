@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@home')->name('HomeController@home');
 Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
 Route::post('/providers', 'ProvidersController@create')->name('ProvidersController@create');
 Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
-Route::get('/providers/{id}/edit', 'ProvidersController@edit')->name('ProvidersController@edit');
+Route::get('/providers/{id}/edit', 'ProvidersController@providersEdit')->name('ProvidersController@providersEdit');
 Route::post('/providers/{id}', 'ProvidersController@update')->name('ProvidersController@update');
 Route::get('/providers/{id}/destroyView', 'ProvidersController@destroyView')->name('ProvidersController@destroyView');
 Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('ProvidersController@destroy');
@@ -38,7 +38,7 @@ Route::post('/categorys', 'CategorysController@create')->name('CategorysControll
 Route::get('/categorys', 'CategorysController@categorys')->name('CategorysController@categorys');
 Route::get('/categorys/{id}/edit', 'CategorysController@edit')->name('CategorysController@edit');
 Route::post('/categorys/{id}', 'CategorysController@update')->name('CategorsyController@update');
-Route::get('categorys/{id}/destroyView', 'CategoryController@destroyView')->name('CategoryController@destroyView');
+Route::get('categorys/{id}/destroyView', 'CategorysController@destroyView')->name('CategorysController@destroyView');
 Route::delete('/categorys/{id}/destroy', 'CategorysController@destroy')->name('CategorysController@destroy');
 
 #View products

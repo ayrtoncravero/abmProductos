@@ -11,19 +11,16 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('ProductsController@providersEdit', ['id' => $providers->getId()]) }}" method="POST">
+    <form action="{{ route('ProvidersController@update', ['id' => $provider->getId()]) }}" method="POST">
         @csrf
         <label>Codigo:</label><br>
-        <input type="text" name="code" value="{{ $providers->getCode() }}"><br><br>
+        <input type="text" name="code" value="{{ $provider->getCode() }}"><br><br>
 
         <label>Nombre:</label><br>
-        <input type="text" name="name" value="{{ $providers->getName() }}"><br><br>
+        <input type="text" name="name" value="{{ $provider->getName() }}"><br><br>
 
         <label>Descripcion:</label><br>
-        <input type="text" name="description" value="{{ $providers->getDescription() }}"><br><br>
-
-        <label>Precio:</label><br>
-        <input type="number" name="price" value="{{ $providers->getPrice() }}"><br><br>
+        <input type="text" name="description" value="{{ $provider->getDescription() }}"><br><br>
 
         <input type="submit" value="Editar">
     </form>

@@ -2,10 +2,11 @@
 
 namespace App;
 
+use App\Exceptions\InvalidQuantityException;
+use http\Message;
 use Illuminate\Database\Eloquent\Model;
 
-//TODO: change name to english
-class Producto extends Model
+class Product extends Model
 {
     public function getId() {
         return $this->id;
@@ -39,30 +40,40 @@ class Producto extends Model
         return $this->price;
     }
 
-    public function setProvider(Proveedor $provider) {
+    public function setProvider(Provider $provider) {
         $this->provider()->associate($provider);
     }
-    public function getProvider(): Proveedor {
+    public function getProvider(): Provider {
         return $this->provider;
     }
 
-    public function setCategory(Categoria $category) {
+    public function setCategory(Category $category) {
         $this->category()->associate($category);
     }
-    public function getCategory(): Categoria {
+    public function getCategory(): Category {
         return $this->category;
     }
 
     //Stock
+    private function setStock(int $stock) {
+        $this->stock = $stock;
+    }
     public function getStock() {
         return $this->stock;
     }
 
     #Relation
     public function category() {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Category::class);
     }
     public function provider() {
-        return $this->belongsTo(Proveedor::class);
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function changeStock(int $quantity) {
+        if ($this->getStock() < $quantity) {
+            throw new InvalidQuantityException();
+        }
+        $this->setStock($this->getStock() - $quantity);
     }
 }

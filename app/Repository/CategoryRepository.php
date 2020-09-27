@@ -4,20 +4,20 @@
 namespace App\Repository;
 
 
-use App\Categoria;
+use App\Category;
 
 class CategoryRepository
 {
-    public function save(Categoria $category) {
+    public function save(Category $category) {
         $category->save();
     }
 
-    public function allCategory() {
-        return Categoria::query();
+    public function allCategorys() {
+        return Category::query();
     }
 
-    public function searchFindOrFail($id):Categoria {
-        return Categoria::findOrFail($id);
+    public function searchFindOrFail($id):Category {
+        return Category::findOrFail($id);
     }
 
     public function destroy($id) {

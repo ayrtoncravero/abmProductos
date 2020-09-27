@@ -2,20 +2,21 @@
 
 namespace App\Repository;
 
-use App\Producto;
+use App\Product;
+use http\Env\Request;
 
 class ProductRepository
 {
-    public function save(Producto $product) {
+    public function save(Product $product) {
         $product->save();
     }
 
     public function allProducts() {
-        return Producto::query();
+        return Product::query();
     }
 
-    public function searchFindOrFail($id):Producto {
-        return Producto::findOrFail($id);
+    public function searchFindOrFail($id):Product {
+        return Product::findOrFail($id);
     }
 
     public function destroy($id) {
@@ -23,10 +24,19 @@ class ProductRepository
         $product->delete();
     }
 
-    //Traer aca la busqueda del producto por descripcion y nombre
-
+    public function searchForNameAndDescription(Request $request) {
+        $product = Product::where([
+            ['name', 'like', '%' . $request->query('name') . '%'],
+            ['description', 'like', '%' . $request->query('name') . '%']
+        ])->get();
+        return $product;
+    }
 
     public function lowStock() {
-        return Producto::where('stock', '<=', 0)->get();
+        return Product::where('stock', '<=', 0)->get();
+    }
+
+    public function searchByCodeOrFail(string $code) {
+        return Product::query()->where('code', '=', $code)->firstOrFail();
     }
 }

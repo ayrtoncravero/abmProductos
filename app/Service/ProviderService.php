@@ -1,19 +1,16 @@
 <?php
 
-
 namespace App\Service;
 
-
+use App\Provider;
 use App\Repository\ProviderRepository;
-use Dotenv\Exception\ValidationException;
-use NunoMaduro\Collision\Provider;
+use Illuminate\Validation\ValidationException;
 
 class ProviderService
 {
     private $providerRepository;
 
-    //TODO: change name to correctly name (__construct)
-    public function __contruct(ProviderRepository $providerRepository) {
+    public function __construct(ProviderRepository $providerRepository) {
         $this->providerRepository = $providerRepository;
     }
 
@@ -28,7 +25,7 @@ class ProviderService
         $provider->setName($name);
         $provider->setDescription($description);
 
-        $this->productRespository->save($provider);
+        $this->providerRepository->save($provider);
     }
 
     public function update(string $id, string $code, string $name, string $description) {
@@ -42,22 +39,22 @@ class ProviderService
         $provider->setName($name);
         $provider->setDescription($description);
 
-        $this->productRespository->save($provider);
+        $this->providerRepository->save($provider);
     }
 
     public function validatorCode(string $code) {
         if ($code === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',
             ]);
         }
-        if (strelen($code) !== 6) {
-            throw ValidationException::whithMessage([
+        if (strlen($code) !== 6) {
+            throw ValidationException::withMessages([
                 'code' => 'El codigo minimo debe de tener 6 caracteres',
             ]);
         }
-        if (strelen($code) > 6) {
-            throw ValidationException::whithMessage([
+        if (strlen($code) > 6) {
+            throw ValidationException::withMessages([
                 'code' => 'Codigo debe de tener maximo 6 caracteres',
             ]);
         }
@@ -65,7 +62,7 @@ class ProviderService
 
     public function validatorName(string $name) {
         if ($name === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'code' => 'Nombre no declarado',
             ]);
         }

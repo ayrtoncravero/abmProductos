@@ -3,27 +3,28 @@
 @section('title', 'Productos')
 @section('body')
 
-    <h1>Todos los productos</h1>
+    <div class="container">
+        <h1>Todos los productos</h1>
 
-    <p>Buscador:</p>
-    <form action="ProductsController@search" method="GET">
-        <label>Nombre:</label>
-        <input type="text" name="name"><br>
-        <input type="submit" value="Buscar">
-    </form><br>
+        <p>Buscador:</p>
+        <form action="ProductsController@search" method="GET">
+            <label>Nombre:</label>
+            <input type="text" name="name"><br>
+            <input class="button-primary" type="submit" value="Buscar">
+        </form><br>
 
-    <table class="egt">
-        <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Proveedor</th>
-            <th>Categoria</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </tr>
+        <table class="egt">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+                <th>Categoria</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
             @foreach($products as $product)
                 <tr>
                     <td>{{  $product->getCode() }}</td>
@@ -37,13 +38,14 @@
                     </td>
                     <td>
                         <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
-                        @csrf
-                        <input type="submit" value="Borrar">
+                            @csrf
+                            <input type="submit" value="Borrar">
                         </form>
                     </td>
                 </tr>
             @endforeach
-    </table>
+        </table>
 
-    <a href="{{ route('ProductsController@productsNew') }}">Crear producto</a><br>
+        <a href="{{ route('ProductsController@productsNew') }}">Crear producto</a><br>
+    </div>
 @endsection

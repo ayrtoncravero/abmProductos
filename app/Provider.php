@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-//TODO: change name to english
-class Proveedor extends Model
+class Provider extends Model
 {
     public function getId() {
         return $this->id;
@@ -26,14 +25,18 @@ class Proveedor extends Model
     }
 
     public function setDescription(string $description) {
-        $this->name = $description;
+        $this->description = $description;
     }
     public function getDescription(): string{
         return $this->description;
     }
 
+    public function getPrice() {
+        return  $this->price;
+    }
+
     #Referencia a producto
     public function product() {
-        return $this->hasOne(Producto::class);
+        return $this->hasOne(Product::class);
     }
 }

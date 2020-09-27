@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Proveedor;
-use App\Repository\ProductService;
 use App\Repository\ProviderRepository;
+use App\Service\ProviderService;
 use Illuminate\Http\Request;
-use NunoMaduro\Collision\Provider;
-use function GuzzleHttp\Psr7\str;
 
 class ProvidersController extends Controller
 {
@@ -15,74 +12,35 @@ class ProvidersController extends Controller
         return view('providers/providersNew');
     }
 
-    public function providersCreate(Request $request, ProductService $service) {
+    public function create(Request $request, ProviderService $service) {
 
         $this->validateRequest($request);
 
         $service->create($request->input('code'), $request->input('name'), $request->input('description'));
 
         return redirect(route('ProviderController@providers'));
-
-        //TODO: delete comment's code
-        //$code = $request->input('code');
-        //$name = $request->input('name');
-        //$description = $request->input('description');
-
-        //$providers = new Proveedor();
-
-        //$providers->setCode($code);
-        //$providers->setName($name);
-        //$providers->setDescription($description);
-
-        //$providers->save();
-
-        //return view('providers/providerCreated', ['providers' => $providers]);
     }
 
     public function providers(ProviderRepository $providerRepository) {
-        return view('providers', ['providers' => $providerRepository->allProviders()]);
+        return view('providers/providers', ['providers' => $providerRepository->allProviders()]);
     }
 
-    public function edit(string $id, ProviderRepository $repository) {
+    public function providersEdit(string $id, ProviderRepository $repository) {
 
-        return view('edit', ['provider' => $repository->searchFindOrFail($id)]);
-
-        //TODO: delete comment's code
-        //$this->validateRequest($request);
-
-        //$code = $request->input('code');
-
-        //$provider = Proveedor::query()->where('code', '=', $code)->first();
-        //if (isset($provider) && $provider->getId() !== (int)$id) {
-        //    return redirect()->back()->withErrors(['code' => 'the code has already been taken']);
-        //}
-
-        //$code = $request->input('code');
-        //$name = $request->input('name');
-        //$description = $request->input('description');
-
-        //$providerEdit = Proveedor::find($id);
-
-        //$providerEdit->setCode($code);
-        //$providerEdit->setName($name);
-        //$providerEdit->setDescription($description);
-
-        //$providerEdit->save();
-
-        //return redirect(route('ProviderConreoller@provider'));
+        return view('providers/providersEdit', ['providers' => $repository->searchFindOrFail($id)]);
     }
 
-    public function update(string $id, Request $request, ProductService $service){
+    public function update(string $id, Request $request, ProviderService $service){
 
         $this->validateRequest($request);
 
-        $service->update($id, $request->input('code'), $request->input('nae'), $request->input('description'));
+        $service->update($id, $request->input('code'), $request->input('name'), $request->input('description'));
 
         return redirect(route('ProvidersController@providers'));
     }
 
     public function destroyView(string $id, ProviderRepository $repository) {
-        return view('providers/destroyView', ['provider' => $repository->searchFindOrFail($id)]);
+        return view('providers/destroyView', ['providers' => $repository->searchFindOrFail($id)]);
     }
 
     public function destroy(string $id, ProviderRepository $repository) {
@@ -90,10 +48,6 @@ class ProvidersController extends Controller
         $repository->destroy($id);
 
         return redirect(route('ProductController@provider'));
-        //TODO: delete comment's code
-        //$provider = Proveedor::find($id);
-        //$provider->delete();
-        //return view('providers/provider');
     }
 
     public function validateRequest(Request $request) {

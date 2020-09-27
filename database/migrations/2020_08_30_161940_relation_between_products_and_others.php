@@ -14,13 +14,13 @@ class RelationBetweenProductsAndOthers extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::table('productos', function (Blueprint $table){
+        Schema::table('products', function (Blueprint $table){
             $table->dropColumn('providers');
             $table->dropColumn('category');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('provider_id')->references('id')->on('proveedors');
-            $table->foreign('category_id')->references('id')->on('categorias');
+            $table->foreign('provider_id')->references('id')->on('providers');
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 
