@@ -29,17 +29,19 @@
                 <tr>
                     <td>{{ $product->getCode() }}</td>
                     <td>{{ $product->getName() }}</td>
+                    <td>{{ $product->getDescription() }}</td>
                     <td>{{ $product->getPrice() }}</td>
                     <td>{{ $product->getStock() }}</td>
-                    <td>{{ $product->getProvider() }}</td>
-                    <td>{{ $product->getCategory() }}</td>
+                    <td>{{ $product->getProvider()->getName() }}</td>
+                    <td>{{ $product->getCategory()->getName() }}</td>
                     <td>
-                        <a href="{{ route('ProductsController@productsEdit', ['id' => $product->getId()]) }}">Editar</a>
+                        <a href="{{ route('ProductsController@edit', ['id' => $product->getId()]) }}">Editar</a>
                     </td>
                     <td>
                         <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
+                            @method('DELETE')
                             @csrf
-                            <input type="submit" value="Borrar">
+                            <input type="submit" value="Borrar" class="button-primary">
                         </form>
                     </td>
                 </tr>

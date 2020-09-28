@@ -33,7 +33,7 @@ Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('P
 
 #Category
 #REACOMODADO
-Route::get('/categories/new', 'CategoriesController@categorysNew')->name('CategoriesController@categorysNew');
+Route::get('/categories/new', 'CategoriesController@categoriesNew')->name('CategoriesController@categoriesNew');
 Route::post('/categories', 'CategoriesController@create')->name('CategoriesController@create');
 Route::get('/categories', 'CategoriesController@categories')->name('CategoriesController@categories');
 Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('CategoriesController@edit');

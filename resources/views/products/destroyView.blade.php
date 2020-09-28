@@ -4,7 +4,7 @@
 @section('body')
     @include('errors')
     <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
-        @method(DELETE)
+        @method('DELETE')
         @csrf
         <p>¿Esta seguro de que desea eliminar el producto?</p>
         <input type="submit" value="Eliminar">

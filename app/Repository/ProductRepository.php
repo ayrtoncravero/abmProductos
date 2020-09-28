@@ -12,7 +12,7 @@ class ProductRepository
     }
 
     public function allProducts() {
-        return Product::query();
+        return Product::query()->get();
     }
 
     public function searchFindOrFail($id):Product {

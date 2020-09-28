@@ -7,7 +7,7 @@ use App\Repository\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class CategorysService
+class CategoriesService
 {
     private $categoryRepository;
 
@@ -42,6 +42,7 @@ class CategorysService
     public function destroy(string $id, CategoryRepository $repository)
     {
         $category = $this->$repository->searchFindOrFail($id);
+
         $category->delete();
     }
 

@@ -37,9 +37,9 @@ class ProductsController extends Controller
         return view('products/products', ['products' => $productRepository->allProducts()]);
     }
 
-    public function edit(string $id, ProductRepository $repository)
+    public function edit(string $id, ProductRepository $repository, ProviderRepository $providerRepository, CategoryRepository $categoryRepository)
     {
-        return view('edit', ['product' => $repository->searchFindOrFail($id)]);
+        return view('products/edit', ['product' => $repository->searchFindOrFail($id), 'providers' => $providerRepository->allProviders(), 'categories' => $categoryRepository->allCategorys()]);
     }
 
     public function update(Request $request, string $id, ProductService $service)
@@ -78,16 +78,8 @@ class ProductsController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'providers' => 'required',
+            'provider' => 'required',
             'category' => 'required',
         ]);
     }
-
-
-
-
-
-
-
-
 }

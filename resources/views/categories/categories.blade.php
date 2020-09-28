@@ -27,6 +27,6 @@
             @endforeach
         </table>
 
-        <a href="{{ route('CategoriesController@categorysNew') }}">Crear categoria</a><br>
+        <a href="{{ route('CategoriesController@categoriesNew') }}">Crear categoria</a><br>
     </div>
 @endsection

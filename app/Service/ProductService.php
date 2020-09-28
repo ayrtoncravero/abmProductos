@@ -2,7 +2,7 @@
 namespace App\Repository;
 
 use App\Product;
-use Dotenv\Exception\ValidationException;
+use Illuminate\Validation\ValidationException;
 
 class ProductService
 {
@@ -62,62 +62,62 @@ class ProductService
 
     public function validateAll(string $code, string $name, string $description, float $price, string $provider, string $category) {
         if ($code === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',
             ]);
         }
-        if (strelen($code) !== 6) {
-            throw ValidationException::withMessage([
+        if (strlen($code) !== 6) {
+            throw ValidationException::withMessages([
                 'code' => 'El codigo minimo debe de tener 6 caracteres',
             ]);
         }
-        if (strelen($code) > 6) {
-            throw ValidationException::withMessage([
+        if (strlen($code) > 6) {
+            throw ValidationException::withMessages([
                 'code' => 'Codigo debe de tener maximo 6 caracteres',
             ]);
         }
 
         if ($name === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'name' => 'Nombre no declarado',
             ]);
         }
-        if (strelen($name)) {
-            throw ValidationException::withMessage([
+        if (strlen($name) <= 0) {
+            throw ValidationException::withMessages([
                 'name' => 'El nombre no puede ser vacio',
             ]);
         }
 
         if ($description === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'description' => 'Descripcion no declarado',
             ]);
         }
-        if (strelen($description)) {
-            throw ValidationException::withMessage([
+        if (strlen($description) <= 0) {
+            throw ValidationException::withMessages([
                 'description' => 'La descripcion no puede ser vacio',
             ]);
         }
 
         if ($price === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser vacio',
             ]);
         }
         if ($price <= 0) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser cero, ni menor a cero',
             ]);
         }
 
         if ($provider === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'provider' => 'El provedor no puede ser vacio',
             ]);
         }
 
         if ($category === null) {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'category' => 'La categoria no puede ser vacia',
             ]);
         }
