@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Category;
 use App\Repository\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CategorysService
 {
@@ -44,9 +45,18 @@ class CategorysService
         $category->delete();
     }
 
-    private function validatorName(Request $request) {
+    /*public function validatorName(Request $request) {
         $request->validate([
             'name' => 'required',
         ]);
+    }*/
+
+    public function validatorName(string $name) {
+        if($name == null){
+            throw ValidationException::withMessages([
+                'name' => 'Nombre no declarado',
+            ]);
+        }
     }
+
 }

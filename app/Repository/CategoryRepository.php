@@ -13,11 +13,11 @@ class CategoryRepository
     }
 
     public function allCategorys() {
-        return Category::query();
+        return Category::query()->get();
     }
 
     public function searchFindOrFail($id):Category {
-        return Category::findOrFail($id);
+        return Category::query()->findOrFail($id);
     }
 
     public function destroy($id) {

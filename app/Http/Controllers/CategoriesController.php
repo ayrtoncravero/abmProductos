@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
+use App\Category;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductService;
 use App\Repository\ProviderRepository;
 use App\Service\CategorysService;
 use Illuminate\Http\Request;
 
-class CategorysController extends Controller
+class CategoriesController extends Controller
 {
-    public function categorysNew(){
-        return view('categorys/categorysNew');
+    public function categoriesNew(){
+        return view('categories/categoriesNew');
     }
 
     public function create(Request $request, CategorysService $service) {
@@ -21,16 +21,16 @@ class CategorysController extends Controller
 
         $service->create($request->input('name'), $request->input('description'));
 
-        return redirect(route('CategorysController@category'));
+        return redirect(route('CategoriesController@categories'));
     }
 
-    public function categorys(CategoryRepository $categoryRepository){
-        return view('categorys/categorys', ['categorys' => $categoryRepository->allCategorys()]);
+    public function categories(CategoryRepository $categoryRepository){
+        return view('categories/categories', ['categories' => $categoryRepository->allCategorys()]);
     }
 
-    public function edit(string $id, CategorieRepository $repository){
+    public function edit(string $id, CategoryRepository $repository){
 
-        return view('edit', ['categorys' => $repository->searchFindOrFail($id)]);
+        return view('categories/categoriesEdit', ['categories' => $repository->searchFindOrFail($id)]);
     }
 
     public function update(Request $request, string $id, CategorysService $service) {
@@ -39,16 +39,16 @@ class CategorysController extends Controller
 
         $service->update($id, $request->input('name'), $request->input('description'));
 
-        return redirect(route('CategorieController@categorie'));
+        return redirect(route('CategoriesController@categories'));
     }
 
     public function destroyView(string $id, CategorysService $repository) {
-        return view('categorie/destroyView', ['categorie' => $repository-searchFindOrFail($id)]);
+        return view('categories/destroyView', ['categories' => $repository->searchFindOrFail($id)]);
     }
 
     public function destroy(string $id, CategorysService $repository) {
         $repository->destroy($id);
-        return redirect(route('CategorieController@categorie'));
+        return redirect(route('CategorieController@categories'));
     }
 
     public function validateRequest(Request $request) {

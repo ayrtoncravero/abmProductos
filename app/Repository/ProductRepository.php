@@ -25,11 +25,12 @@ class ProductRepository
     }
 
     public function searchForNameAndDescription(Request $request) {
-        $product = Product::where([
+        return $product = Product::where([
             ['name', 'like', '%' . $request->query('name') . '%'],
             ['description', 'like', '%' . $request->query('name') . '%']
         ])->get();
-        return $product;
+
+        //return $product;
     }
 
     public function lowStock() {

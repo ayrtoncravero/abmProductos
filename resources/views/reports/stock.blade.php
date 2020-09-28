@@ -17,9 +17,16 @@
             </tr>
             @foreach($products as $product)
                 <tr>
+                    <td>{{ $product->getCode() }}</td>
+                    <td>{{ $product->getName() }}</td>
+                    <td>{{ $product->getDescription() }}</td>
+                    <td>{{ $product->getPrice() }}</td>
+                    <td>{{ $product->getProvider() }}</td>
+                    <td>{{ $product->getCategory() }}</td>
                     <td>{{ $product->getStock() }}</td>
                 </tr>
             @endforeach
         </table>
+        <a href="{{ route('HomeController@home') }}">Ir al inicio</a>
     </div>
 @endsection

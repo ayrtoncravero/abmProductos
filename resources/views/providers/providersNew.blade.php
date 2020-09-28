@@ -14,14 +14,14 @@
     @endif
     <form action="{{ route('ProvidersController@create') }}" method="POST">
         @csrf
-        <label>Codigo:</label><br>
-        <input type="text" required min="1" max="6" name="code"><br><br>
+        <label>Codigo:</label>
+        <input type="text" required min="1" max="6" name="code">
 
-        <label>Nombre:</label><br>
-        <input type="text" name="name" required><br><br>
+        <label>Nombre:</label>
+        <input type="text" name="name" required>
 
-        <label>Descripcion:</label><br>
-        <input type="text" name="description"><br><br>
+        <label>Descripcion:</label>
+        <input type="text" name="description"><br>
 
         <input class="button-primary" type="submit" value="Crear">
     </form>

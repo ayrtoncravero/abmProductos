@@ -18,7 +18,7 @@ class ProvidersController extends Controller
 
         $service->create($request->input('code'), $request->input('name'), $request->input('description'));
 
-        return redirect(route('ProviderController@providers'));
+        return redirect(route('ProvidersController@providers'));
     }
 
     public function providers(ProviderRepository $providerRepository) {
@@ -27,7 +27,7 @@ class ProvidersController extends Controller
 
     public function providersEdit(string $id, ProviderRepository $repository) {
 
-        return view('providers/providersEdit', ['providers' => $repository->searchFindOrFail($id)]);
+        return view('providers/providersEdit', ['provider' => $repository->searchFindOrFail($id)]);
     }
 
     public function update(string $id, Request $request, ProviderService $service){
@@ -40,14 +40,14 @@ class ProvidersController extends Controller
     }
 
     public function destroyView(string $id, ProviderRepository $repository) {
-        return view('providers/destroyView', ['providers' => $repository->searchFindOrFail($id)]);
+        return view('providers/providersDestroy', ['provider' => $repository->searchFindOrFail($id)]);
     }
 
     public function destroy(string $id, ProviderRepository $repository) {
 
         $repository->destroy($id);
 
-        return redirect(route('ProductController@provider'));
+        return redirect(route('ProvidersController@providers'));
     }
 
     public function validateRequest(Request $request) {

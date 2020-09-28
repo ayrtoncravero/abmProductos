@@ -7,7 +7,7 @@
         <h1>Todos los productos</h1>
 
         <p>Buscador:</p>
-        <form action="ProductsController@search" method="GET">
+        <form action="{{ route('ProductsController@search') }}" method="GET">
             <label>Nombre:</label>
             <input type="text" name="name"><br>
             <input class="button-primary" type="submit" value="Buscar">
@@ -27,12 +27,12 @@
             </tr>
             @foreach($products as $product)
                 <tr>
-                    <td>{{  $product->getCode() }}</td>
-                    <td>{{  $product->getName() }}</td>
-                    <td>{{  $product->getPrice() }}</td>
+                    <td>{{ $product->getCode() }}</td>
+                    <td>{{ $product->getName() }}</td>
+                    <td>{{ $product->getPrice() }}</td>
                     <td>{{ $product->getStock() }}</td>
-                    <td>{{  $product->getProvider() }}</td>
-                    <td>{{  $product->getCategory() }}</td>
+                    <td>{{ $product->getProvider() }}</td>
+                    <td>{{ $product->getCategory() }}</td>
                     <td>
                         <a href="{{ route('ProductsController@productsEdit', ['id' => $product->getId()]) }}">Editar</a>
                     </td>

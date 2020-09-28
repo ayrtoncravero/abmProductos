@@ -61,15 +61,15 @@ class ProductsController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function search(Request $request, ProductRepository $productRepository, $product)
+    public function search(Request $request, ProductRepository $productRepository)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $products = '';
+
+        $this->validateRequest($request);
 
         $productRepository->searchForNameAndDescription($request);
 
-        return view('products/products', ['product' => $product]);
+        return view('products/products', ['products' => $products]);
     }
 
     public function validateRequest(Request $request) {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     public function getId() {
-        $this->id;
+        return $this->id;
     }
 
     public function setName(string $name) {
@@ -26,6 +26,6 @@ class Category extends Model
 
     #Referencia a producto
     public function product() {
-        return $this->hasOne(Producto::class);
+        return $this->hasOne(Product::class);
     }
 }

@@ -13,23 +13,20 @@
                 <th>Eliminar</th>
             </tr>
             <tr>
-            @foreach($categorys as $category)
+            @foreach($categories as $category)
                 <tr>
                     <td>{{ $category->getName() }}</td>
                     <td>{{ $category->getDescription() }}</td>
                     <td>
-                        <a href="{{ route('CategorysController@categorysEdit', ['id' => $category->getId()]) }}">Editar</a>
+                        <a href="{{ route('CategoriesController@edit', ['id' => $category->getId()]) }}">Editar</a>
                     </td>
                     <td>
-                        <form action="{{ route('CategorysController@categorysDestroy', ['id' => $category->getId()]) }}" method="POST">
-                            @csrf
-                            <input type="submit" value="Borrar">
-                        </form>
+                        <a href="{{ route('CategoriesController@destroyView', ['id' => $category->getId()]) }}">Borrar</a>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="{{ route('CategorysController@categorysNew') }}">Crear categoria</a><br>
+        <a href="{{ route('CategoriesController@categorysNew') }}">Crear categoria</a><br>
     </div>
 @endsection

@@ -13,15 +13,16 @@
     @endif
     <form action="{{ route('ProvidersController@update', ['id' => $provider->getId()]) }}" method="POST">
         @csrf
-        <label>Codigo:</label><br>
-        <input type="text" name="code" value="{{ $provider->getCode() }}"><br><br>
+        <label>Codigo:</label>
+        <input type="text" name="code" value="{{ $provider->getCode() }}">
 
-        <label>Nombre:</label><br>
-        <input type="text" name="name" value="{{ $provider->getName() }}"><br><br>
+        <label>Nombre:</label>
+        <input type="text" name="name" value="{{ $provider->getName() }}">
 
-        <label>Descripcion:</label><br>
-        <input type="text" name="description" value="{{ $provider->getDescription() }}"><br><br>
+        <label>Descripcion:</label>
+        <input type="text" name="description" value="{{ $provider->getDescription() }}"><br>
 
-        <input type="submit" value="Editar">
+        <input class="button-primary" type="submit" value="Editar">
     </form>
+    <a href="{{ route('ProvidersController@providers') }}">Regresar</a>
 @endsection

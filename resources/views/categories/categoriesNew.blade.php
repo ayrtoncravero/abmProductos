@@ -13,14 +13,15 @@
         </div>
     @endif
 
-    <form action="{{ route('CategorysController@create') }}" method="POST">
+    <form action="{{ route('CategoriesController@create') }}" method="POST">
         @csrf
-        <label>Nombre:</label><br>
-        <input type="text" name="name" required min="1"><br><br>
+        <label>Nombre:</label>
+        <input type="text" name="name" required min="1">
 
-        <label>Descripcion:</label><br>
-        <input type="text" name="description"><br><br>
+        <label>Descripcion:</label>
+        <input type="text" name="description"><br>
 
         <input class="button-primary" type="submit" value="Crear">
     </form>
+    <a href="{{ route('CategoriesController@categories') }}">Regresar</a>
 @endsection

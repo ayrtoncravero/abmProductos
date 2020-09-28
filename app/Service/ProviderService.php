@@ -16,8 +16,7 @@ class ProviderService
 
     public function create(string $code, string $name, string $description)
     {
-        $this->validatorCode($code);
-        $this->validatorName($name);
+        $this->validator($code, $name);
 
         $provider = new Provider();
 
@@ -30,8 +29,7 @@ class ProviderService
 
     public function update(string $id, string $code, string $name, string $description) {
 
-        $this->validatorName($code);
-        $this->validatorName($name);
+        $this->validator($code, $name);
 
         $provider = $this->providerRepository->searchFindOrFail($id);
 
@@ -42,7 +40,7 @@ class ProviderService
         $this->providerRepository->save($provider);
     }
 
-    public function validatorCode(string $code) {
+    public function validator(string $code, string $name) {
         if ($code === null) {
             throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',
@@ -58,9 +56,6 @@ class ProviderService
                 'code' => 'Codigo debe de tener maximo 6 caracteres',
             ]);
         }
-    }
-
-    public function validatorName(string $name) {
         if ($name === null) {
             throw ValidationException::withMessages([
                 'code' => 'Nombre no declarado',

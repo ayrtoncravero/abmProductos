@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@home')->name('HomeController@home');
 
 #Provider
-#REACOMODADO
+//100% funcional papu
 Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
 Route::post('/providers', 'ProvidersController@create')->name('ProvidersController@create');
 Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
@@ -33,13 +33,13 @@ Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('P
 
 #Category
 #REACOMODADO
-Route::get('/categorys/new', 'CategorysController@categorysNew')->name('CategorysController@categorysNew');
-Route::post('/categorys', 'CategorysController@create')->name('CategorysController@create');
-Route::get('/categorys', 'CategorysController@categorys')->name('CategorysController@categorys');
-Route::get('/categorys/{id}/edit', 'CategorysController@edit')->name('CategorysController@edit');
-Route::post('/categorys/{id}', 'CategorysController@update')->name('CategorsyController@update');
-Route::get('categorys/{id}/destroyView', 'CategorysController@destroyView')->name('CategorysController@destroyView');
-Route::delete('/categorys/{id}/destroy', 'CategorysController@destroy')->name('CategorysController@destroy');
+Route::get('/categories/new', 'CategoriesController@categorysNew')->name('CategoriesController@categorysNew');
+Route::post('/categories', 'CategoriesController@create')->name('CategoriesController@create');
+Route::get('/categories', 'CategoriesController@categories')->name('CategoriesController@categories');
+Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('CategoriesController@edit');
+Route::post('/categories/{id}', 'CategoriesController@update')->name('CategoriesController@update');
+Route::get('categories/{id}/destroyView', 'CategoriesController@destroyView')->name('CategoriesController@destroyView');
+Route::delete('/categories/{id}/destroy', 'CategoriesController@destroy')->name('CategoriesController@destroy');
 
 #View products
 #REACOMODADO
