@@ -76,4 +76,12 @@ class Product extends Model
         }
         $this->setStock($this->getStock() - $quantity);
     }
+
+    public function increaseStock(int $quantity)
+    {
+        if ($quantity <= 0) {
+            throw new InvalidQuantityException();
+        }
+        $this->setStock($quantity);
+    }
 }

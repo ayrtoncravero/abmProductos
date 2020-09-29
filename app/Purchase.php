@@ -13,14 +13,10 @@ class Purchase extends Model
         return $this->quantity;
     }
 
-    public function setProduct(Product $product) {
-        $this->product = $product;
+    public function setCode(string $code) {
+        $this->code = $code;
     }
     public function setQuantity(int $quantity) {
         $this->quantity = $quantity;
-    }
-
-    public function product() {
-        return $this->belongsTo(Product::class);
     }
 }

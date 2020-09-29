@@ -39,7 +39,7 @@ class ProductsController extends Controller
 
     public function edit(string $id, ProductRepository $repository, ProviderRepository $providerRepository, CategoryRepository $categoryRepository)
     {
-        return view('products/edit', ['product' => $repository->searchFindOrFail($id), 'providers' => $providerRepository->allProviders(), 'categories' => $categoryRepository->allCategorys()]);
+        return view('products/edit', ['product' => $repository->findOrFail($id), 'providers' => $providerRepository->allProviders(), 'categories' => $categoryRepository->allCategorys()]);
     }
 
     public function update(Request $request, string $id, ProductService $service)
@@ -53,7 +53,7 @@ class ProductsController extends Controller
 
     public function destroyView(string $id, ProductRepository $repository) {
 
-        return view('products/destroyView', ['product' =>$repository->searchFindOrFail($id)]);
+        return view('products/destroyView', ['product' =>$repository->findOrFail($id)]);
     }
 
     public function destroy(string $id, ProductRepository $repository) {

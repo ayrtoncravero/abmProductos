@@ -56,6 +56,8 @@ Route::get('/search', 'ProductsController@search')->name('ProductsController@sea
 #Dar de alta una compra
 Route::get('/purchases', 'PurchasesController@purchases')->name('PurchasesController@purchases');
 Route::post('/purchases', 'PurchasesController@purchasesCreate')->name('PurchasesController@purchasesCreate');
+Route::get('/stock', 'PurchasesController@addStock')->name('PurchasesController@addStock');
+Route::post('/stock', 'PurchasesController@increaseStock')->name('PurchasesController@increaseStock');
 
 #FALTA REVISAR ESTE
 #Ver informes

@@ -15,12 +15,12 @@ class ProductRepository
         return Product::query()->get();
     }
 
-    public function searchFindOrFail($id):Product {
+    public function findOrFail($id):Product {
         return Product::findOrFail($id);
     }
 
     public function destroy($id) {
-        $product = $this->searchFindOrFail($id);
+        $product = $this->findOrFail($id);
         $product->delete();
     }
 
@@ -34,10 +34,11 @@ class ProductRepository
     }
 
     public function lowStock() {
-        return Product::where('stock', '<=', 0)->get();
+        return Product::where('stock', '<=', 5)->get();
     }
 
-    public function searchByCodeOrFail(string $code) {
+    public function searchByCodeOrFail(string $code):Product {
         return Product::query()->where('code', '=', $code)->firstOrFail();
     }
+
 }

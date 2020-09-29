@@ -21,8 +21,8 @@
                     <td>{{ $product->getName() }}</td>
                     <td>{{ $product->getDescription() }}</td>
                     <td>{{ $product->getPrice() }}</td>
-                    <td>{{ $product->getProvider() }}</td>
-                    <td>{{ $product->getCategory() }}</td>
+                    <td>{{ $product->getProvider()->getName() }}</td>
+                    <td>{{ $product->getCategory()->getName() }}</td>
                     <td>{{ $product->getStock() }}</td>
                 </tr>
             @endforeach
