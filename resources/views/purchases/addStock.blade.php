@@ -26,5 +26,7 @@
 
             <input class="button-primary" type="submit" value="Agregar stock">
         </form>
+
+        <a href="{{route('HomeController@home')}}">Regresar</a>
     </div>
 @endsection

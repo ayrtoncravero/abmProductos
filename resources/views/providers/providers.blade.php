@@ -20,18 +20,17 @@
                         <a href="{{ route('ProvidersController@providersEdit', ['id' => $provider->getId()]) }}">Editar</a>
                     </td>
                     <td>
-                        {{--
-                        <form action="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}" method="POST">
-                            @csrf
-                            <input class="button-primary" type="submit" value="Borrar">
+                        <form action="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}">
+                            <input type="submit" class="button-primary" value="Borrar">
                         </form>
-                        --}}
-                        <a href="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}">Borrar</a>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="{{ route('ProvidersController@providersNew') }}">Crear proveedor</a><br>
+        <form action="{{ route('ProvidersController@providersNew') }}">
+            <input class="button-primary" type="submit" value="Crear proveedor">
+        </form>
+        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection

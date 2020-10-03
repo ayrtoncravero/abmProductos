@@ -40,7 +40,7 @@ class ProvidersController extends Controller
     }
 
     public function destroyView(string $id, ProviderRepository $repository) {
-        return view('providers/providersDestroy', ['provider' => $repository->searchFindOrFail($id)]);
+        return view('providers/destroyView', ['provider' => $repository->searchFindOrFail($id)]);
     }
 
     public function destroy(string $id, ProviderRepository $repository) {

@@ -27,6 +27,7 @@
                 </tr>
             @endforeach
         </table>
-        <a href="{{ route('HomeController@home') }}">Ir al inicio</a>
+
+        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection

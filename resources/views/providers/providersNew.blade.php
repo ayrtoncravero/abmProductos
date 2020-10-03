@@ -25,4 +25,8 @@
 
         <input class="button-primary" type="submit" value="Crear">
     </form>
+
+    <form action="{{ route('ProvidersController@providers') }}">
+        <input class="button-primary" type="submit" value="Cancelar">
+    </form>
 @endsection

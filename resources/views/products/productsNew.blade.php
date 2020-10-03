@@ -33,5 +33,9 @@
 
             <input class="button-primary" type="submit" value="Crear">
         </form>
+
+        <form action="{{ route('ProductsController@products') }}">
+            <input class="button-primary" type="submit" value="Cancelar">
+        </form>
     </div>
 @endsection

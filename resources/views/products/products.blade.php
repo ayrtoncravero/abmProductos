@@ -6,8 +6,8 @@
     <div class="container">
         <h1>Todos los productos</h1>
 
-        <p>Buscador:</p>
         <form action="{{ route('ProductsController@search') }}" method="GET">
+            <p>Buscador:</p>
             <label>Nombre:</label>
             <input type="text" name="name"><br>
             <input class="button-primary" type="submit" value="Buscar">
@@ -35,19 +35,23 @@
                     <td>{{ $product->getProvider()->getName() }}</td>
                     <td>{{ $product->getCategory()->getName() }}</td>
                     <td>
-                        <a href="{{ route('ProductsController@edit', ['id' => $product->getId()]) }}">Editar</a>
+                        <form action="{{ route('ProductsController@edit', ['id' => $product->getId()]) }}">
+                            @csrf
+                            <input type="submit" class="button-primary" value="Editar">
+                        </form>
                     </td>
                     <td>
-                        <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <input type="submit" value="Borrar" class="button-primary">
+                        <form action="{{ route('ProductsController@destroyView', ['id' => $product->getId()]) }}">
+                            <input type="submit" class="button-primary" value="Borrar">
                         </form>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="{{ route('ProductsController@productsNew') }}">Crear producto</a><br>
+        <form action="{{ route('ProductsController@productsNew') }}">
+            <input class="button-primary" type="submit" value="Crear producto">
+        </form>
+        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection

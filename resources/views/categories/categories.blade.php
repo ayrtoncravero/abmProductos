@@ -18,15 +18,23 @@
                     <td>{{ $category->getName() }}</td>
                     <td>{{ $category->getDescription() }}</td>
                     <td>
-                        <a href="{{ route('CategoriesController@edit', ['id' => $category->getId()]) }}">Editar</a>
+                        <form action="{{ route('CategoriesController@edit', ['id' => $category->getId()]) }}">
+                            <input type="submit" class="button-primary" value="Editar">
+                        </form>
                     </td>
                     <td>
-                        <a href="{{ route('CategoriesController@destroyView', ['id' => $category->getId()]) }}">Borrar</a>
+                        <form action="{{ route('CategoriesController@destroyView', ['id' => $category->getId()]) }}">
+                            <input type="submit" class="button-primary" value="Borrar">
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        <a href="{{ route('CategoriesController@categoriesNew') }}">Crear categoria</a><br>
+        <form action="{{ route('CategoriesController@categoriesNew') }}">
+            <input type="submit" class="button-primary" value="Crear categoria">
+        </form>
+
+        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection

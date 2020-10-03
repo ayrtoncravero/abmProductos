@@ -44,7 +44,7 @@ class ProductService
 
         $this->validateAll($code, $name, $description, $price, $provider, $category);
 
-        $product = $this->productRepository->searchFindOrFail($id);
+        $product = $this->productRepository->searchByCodeOrFail($code);
 
         $product->setCode($code);
         $product->setName($name);
