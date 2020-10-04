@@ -22,8 +22,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@home')->name('HomeController@home');
 
 #Provider
-//100% funcional papu
-Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
+Route::get('/providers/new', 'ProvidersController@createView')->name('ProvidersController@createView');
 Route::post('/providers', 'ProvidersController@create')->name('ProvidersController@create');
 Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
 Route::get('/providers/{id}/edit', 'ProvidersController@providersEdit')->name('ProvidersController@providersEdit');
@@ -33,7 +32,7 @@ Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('P
 
 #Category
 #REACOMODADO
-Route::get('/categories/new', 'CategoriesController@categoriesNew')->name('CategoriesController@categoriesNew');
+Route::get('/categories/new', 'CategoriesController@createView')->name('CategoriesController@createView');
 Route::post('/categories', 'CategoriesController@create')->name('CategoriesController@create');
 Route::get('/categories', 'CategoriesController@categories')->name('CategoriesController@categories');
 Route::get('/categories/{id}/edit', 'CategoriesController@edit')->name('CategoriesController@edit');
@@ -43,7 +42,7 @@ Route::delete('/categories/{id}/destroy', 'CategoriesController@destroy')->name(
 
 #View products
 #REACOMODADO
-Route::get('/products/new', 'ProductsController@productsNew')->name('ProductsController@productsNew');
+Route::get('/products/new', 'ProductsController@createView')->name('ProductsController@createView');
 Route::post('/products', 'ProductsController@create')->name('ProductsController@create');
 Route::get('/products', 'ProductsController@products')->name('ProductsController@products');
 Route::get('/products/{id}/edit', 'ProductsController@edit')->name('ProductsController@edit');
@@ -54,7 +53,7 @@ Route::get('/search', 'ProductsController@search')->name('ProductsController@sea
 
 #FALTA REVISAR ESTE
 #Dar de alta una compra
-Route::get('/purchases', 'PurchasesController@purchases')->name('PurchasesController@purchases');
+Route::get('/purchases', 'PurchasesController@createView')->name('PurchasesController@createView');
 Route::post('/purchases', 'PurchasesController@purchasesCreate')->name('PurchasesController@purchasesCreate');
 Route::get('/stock', 'PurchasesController@addStock')->name('PurchasesController@addStock');
 Route::post('/stock', 'PurchasesController@increaseStock')->name('PurchasesController@increaseStock');

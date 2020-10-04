@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Compra;
 use App\Exceptions\InvalidQuantityException;
-use App\Product;
 use App\Purchase;
 use App\Repository\PurchaseRepository;
 use http\Exception\InvalidArgumentException;
@@ -33,17 +31,16 @@ class PurchasesController extends Controller
         return view('purchases/purchases', ['products' => $this->productRepository->allProducts()]);
     }
 
-    public function purchasesCreate(Request $request) {
-
+    public function purchasesCreate(Request $request)
+    {
         $this->validateRequest($request);
 
         $code = $request->input('code');
         $quantity = $request->input('quantity');
         $product = $request->input('product');
 
-        //TODO:add messages
         if ($this->purchaseRepository->verifyIfCodeIsExist($code)) {
-            throw new InvalidArgumentException();
+            throw new InvalidArgumentException('Codigo no existente');
         }
 
         $product = $this->productRepository->findOrFail($product);
@@ -64,11 +61,13 @@ class PurchasesController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function addStock() {
+    public function addStock()
+    {
         return view('purchases/addStock');
     }
 
-    public function increaseStock(Request $request) {
+    public function increaseStock(Request $request)
+    {
 
         $this->validateRequest($request);
 
@@ -83,7 +82,8 @@ class PurchasesController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function validateRequest(Request $request) {
+    public function validateRequest(Request $request)
+    {
         $request->validate([
             'code' => 'required',
             'quantity' => 'required|min:1',

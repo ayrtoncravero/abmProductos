@@ -6,17 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
-    public function getCode():string {
+    public function getCode():string
+    {
         return $this->code;
     }
-    public function getQuantity():int {
+
+    public function getQuantity():int
+    {
         return $this->quantity;
     }
 
-    public function setCode(string $code) {
+    public function setCode(string $code)
+    {
         $this->code = $code;
     }
-    public function setQuantity(int $quantity) {
+
+    public function setQuantity(int $quantity)
+    {
         $this->quantity = $quantity;
     }
 }

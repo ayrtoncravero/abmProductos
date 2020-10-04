@@ -3,74 +3,96 @@
 namespace App;
 
 use App\Exceptions\InvalidQuantityException;
-use http\Message;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setCode(string $code) {
+    public function setCode(string $code)
+    {
         $this->code = $code;
     }
-    public function getCode(): string {
+
+    public function getCode(): string
+    {
         return $this->code;
     }
 
-    public function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
-    public function getName(): string {
+
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function setDescription(string $Description) {
+    public function setDescription(string $Description)
+    {
         $this->description = $Description;
     }
-    public function getDescription(): string {
+
+    public function getDescription(): string
+    {
         return $this->description;
     }
 
-    public function setPrice(int $price) {
+    public function setPrice(int $price)
+    {
         $this->price = $price;
     }
-    public function getPrice(): float {
+
+    public function getPrice(): float
+    {
         return $this->price;
     }
 
-    public function setProvider(Provider $provider) {
+    public function setProvider(Provider $provider)
+    {
         $this->provider()->associate($provider);
     }
-    public function getProvider(): Provider {
+
+    public function getProvider(): Provider
+    {
         return $this->provider;
     }
 
-    public function setCategory(Category $category) {
+    public function setCategory(Category $category)
+    {
         $this->category()->associate($category);
     }
-    public function getCategory(): Category {
+
+    public function getCategory(): Category
+    {
         return $this->category;
     }
 
-    //Stock
-    private function setStock(int $stock) {
+    private function setStock(int $stock)
+    {
         $this->stock = $stock;
     }
-    public function getStock() {
+    public function getStock()
+    {
         return $this->stock;
     }
 
-    #Relation
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-    public function provider() {
+
+    public function provider()
+    {
         return $this->belongsTo(Provider::class);
     }
 
-    public function changeStock(int $quantity) {
+    public function changeStock(int $quantity)
+    {
         if ($this->getStock() < $quantity) {
             throw new InvalidQuantityException();
         }

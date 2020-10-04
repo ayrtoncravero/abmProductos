@@ -7,10 +7,23 @@ use Illuminate\Http\Request;
 
 class ReportsController extends Controller
 {
-    public function reports() {
+    /**
+     * @var productRepository
+     */
+    private $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+    public function reports()
+    {
         return view('reports/reports');
     }
-    public function stock(ProductRepository $productsRepository) {
-        return view('reports/stock', ['products' => $productsRepository->lowStock()]);
+
+    public function stock()
+    {
+        return view('reports/stock', ['products' => $this->productRepository->lowStock()]);
     }
 }

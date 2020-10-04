@@ -3,7 +3,6 @@
 
 namespace App\Repository;
 
-
 use App\Category;
 
 class CategoryRepository
@@ -12,7 +11,7 @@ class CategoryRepository
         $category->save();
     }
 
-    public function allCategorys() {
+    public function findAll() {
         return Category::query()->get();
     }
 

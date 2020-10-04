@@ -29,8 +29,6 @@ class ProductRepository
             ['name', 'like', '%' . $request->query('name') . '%'],
             ['description', 'like', '%' . $request->query('name') . '%']
         ])->get();
-
-        //return $product;
     }
 
     public function lowStock() {
@@ -40,5 +38,4 @@ class ProductRepository
     public function searchByCodeOrFail(string $code):Product {
         return Product::query()->where('code', '=', $code)->firstOrFail();
     }
-
 }

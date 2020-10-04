@@ -8,49 +8,68 @@ use Illuminate\Http\Request;
 
 class ProvidersController extends Controller
 {
-    public function providersNew() {
-        return view('providers/providersNew');
+    /**
+     * @var ProviderService
+     */
+    private $providerService;
+    /**
+     * @var ProviderRepository
+     */
+    private $providerRepository;
+
+    public function __construct(ProviderService $service, ProviderRepository $repository)
+    {
+        $this->providerService = $service;
+        $this->providerRepository = $repository;
     }
 
-    public function create(Request $request, ProviderService $service) {
+    public function createView()
+    {
+        return view('providers/createView');
+    }
 
+    public function create(Request $request)
+    {
         $this->validateRequest($request);
 
-        $service->create($request->input('code'), $request->input('name'), $request->input('description'));
+        $this->providerService->create($request->input('code'), $request->input('name'), $request->input('description'));
 
         return redirect(route('ProvidersController@providers'));
     }
 
-    public function providers(ProviderRepository $providerRepository) {
-        return view('providers/providers', ['providers' => $providerRepository->allProviders()]);
+    public function providers()
+    {
+        return view('providers/providers', ['providers' => $this->providerRepository->allProviders()]);
     }
 
-    public function providersEdit(string $id, ProviderRepository $repository) {
-
-        return view('providers/providersEdit', ['provider' => $repository->searchFindOrFail($id)]);
+    public function providersEdit(string $id)
+    {
+        return view('providers/providersEdit', ['provider' => $this->providerRepository->searchFindOrFail($id)]);
     }
 
-    public function update(string $id, Request $request, ProviderService $service){
-
+    public function update(string $id, Request $request)
+    {
         $this->validateRequest($request);
 
-        $service->update($id, $request->input('code'), $request->input('name'), $request->input('description'));
+        $this->providerService->update($id, $request->input('code'), $request->input('name'), $request->input('description'));
 
         return redirect(route('ProvidersController@providers'));
     }
 
-    public function destroyView(string $id, ProviderRepository $repository) {
-        return view('providers/destroyView', ['provider' => $repository->searchFindOrFail($id)]);
+    public function destroyView(string $id)
+    {
+        return view('providers/destroyView', ['provider' => $this->providerRepository->searchFindOrFail($id)]);
     }
 
-    public function destroy(string $id, ProviderRepository $repository) {
-
-        $repository->destroy($id);
+    public function destroy(string $id)
+    {
+        $this->providerRepository->destroy($id);
 
         return redirect(route('ProvidersController@providers'));
     }
 
-    public function validateRequest(Request $request) {
+    public function validateRequest(Request $request)
+    {
         $request->validate([
             'code' => 'required',
             'name' => 'required',

@@ -2,66 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Repository\CategoryRepository;
-use App\Repository\ProductService;
-use App\Repository\ProviderRepository;
 use App\Service\CategoriesService;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
     /**
-     * @var CategoryRepository
+     * @var categoryRepository
      */
     private $categoryRepository;
+    /**
+     * @var categoriesService
+     */
+    private $categoriesService;
 
-    public function __construct(CategoryRepository $repository)
+    public function __construct(CategoryRepository $repository, CategoriesService $service)
     {
         $this->categoryRepository = $repository;
+        $this->categoriesService = $service;
     }
 
-    public function categoriesNew(){
-        return view('categories/categoriesNew');
+    public function createView()
+    {
+        return view('categories/createView');
     }
 
-    public function create(Request $request, CategoriesService $service) {
+    public function create(Request $request)
+    {
 
         $this->validateRequest($request);
 
-        $service->create($request->input('name'), $request->input('description'));
+        $this->categoriesService->create($request->input('name'), $request->input('description'));
 
         return redirect(route('CategoriesController@categories'));
     }
 
-    public function categories(CategoryRepository $categoryRepository){
-        return view('categories/categories', ['categories' => $categoryRepository->allCategorys()]);
+    public function categories()
+    {
+        return view('categories/categories', ['categories' => $this->categoryRepository->allCategorys()]);
     }
 
-    public function edit(string $id, CategoryRepository $repository){
-
-        return view('categories/categoriesEdit', ['categories' => $repository->searchFindOrFail($id)]);
+    public function edit(string $id)
+    {
+        return view('categories/categoriesEdit', ['categories' => $this->categoryRepository->searchFindOrFail($id)]);
     }
 
-    public function update(Request $request, string $id, CategoriesService $service) {
+    public function update(Request $request, string $id)
+    {
 
         $this->validateRequest($request);
 
-        $service->update($id, $request->input('name'), $request->input('description'));
+        $this->categoriesService->update($id, $request->input('name'), $request->input('description'));
 
         return redirect(route('CategoriesController@categories'));
     }
 
-    public function destroyView(string $id) {
+    public function destroyView(string $id)
+    {
         return view('categories/destroyView', ['categories' => $this->categoryRepository->searchFindOrFail($id)]);
     }
 
-    public function destroy(string $id) {
+    public function destroy(string $id)
+    {
         $this->categoryRepository->destroy($id);
         return redirect(route('CategoriesController@categories'));
     }
 
-    public function validateRequest(Request $request) {
+    public function validateRequest(Request $request)
+    {
         $request->validate([
             'name' => 'required',
         ]);

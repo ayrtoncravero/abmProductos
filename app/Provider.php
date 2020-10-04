@@ -6,37 +6,48 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setCode(string $code) {
+    public function setCode(string $code)
+    {
         $this->code = $code;
     }
-    public function getCode(): string {
+    public function getCode(): string
+    {
         return $this->code;
     }
 
-    public function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
-    public function getName(): string {
+
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function setDescription(string $description) {
+    public function setDescription(string $description)
+    {
+
         $this->description = $description;
     }
-    public function getDescription(): string{
+
+    public function getDescription(): string
+    {
         return $this->description;
     }
 
-    public function getPrice() {
+    public function getPrice()
+    {
         return  $this->price;
     }
 
-    #Referencia a producto
-    public function product() {
+    public function product()
+    {
         return $this->hasOne(Product::class);
     }
 }
