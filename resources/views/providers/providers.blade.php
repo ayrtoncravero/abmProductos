@@ -17,7 +17,9 @@
                     <td>{{  $provider->getName() }}</td>
                     <td>{{  $provider->getDescription() }}</td>
                     <td>
-                        <a href="{{ route('ProvidersController@providersEdit', ['id' => $provider->getId()]) }}">Editar</a>
+                        <form action="{{ route('ProvidersController@edit', ['id' => $provider->getId()]) }}">
+                            <input type="submit" class="button-primary" value="Editar">
+                        </form>
                     </td>
                     <td>
                         <form action="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}">
@@ -28,7 +30,7 @@
             @endforeach
         </table>
 
-        <form action="{{ route('ProvidersController@providersNew') }}">
+        <form action="{{ route('ProvidersController@createView') }}">
             <input class="button-primary" type="submit" value="Crear proveedor">
         </form>
         <a href="{{ route('HomeController@home') }}">Regresar</a>

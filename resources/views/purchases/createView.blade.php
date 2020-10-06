@@ -13,7 +13,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('PurchasesController@purchasesCreate') }}" method="POST">
+        <form action="{{ route('PurchasesController@create') }}" method="POST">
             @csrf
             <label>Codigo:</label>
             <input type="text" name="code" required><br>

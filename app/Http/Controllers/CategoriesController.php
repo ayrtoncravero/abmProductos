@@ -40,17 +40,16 @@ class CategoriesController extends Controller
 
     public function categories()
     {
-        return view('categories/categories', ['categories' => $this->categoryRepository->allCategorys()]);
+        return view('categories/categories', ['categories' => $this->categoryRepository->findAll()]);
     }
 
-    public function edit(string $id)
+    public function editView(string $id)
     {
-        return view('categories/categoriesEdit', ['categories' => $this->categoryRepository->searchFindOrFail($id)]);
+        return view('categories/editView', ['categories' => $this->categoryRepository->searchFindOrFail($id)]);
     }
 
     public function update(Request $request, string $id)
     {
-
         $this->validateRequest($request);
 
         $this->categoriesService->update($id, $request->input('name'), $request->input('description'));

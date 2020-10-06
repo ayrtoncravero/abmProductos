@@ -27,11 +27,12 @@ class PurchasesController extends Controller
         $this->purchaseRepository = $purchaseRepository;
     }
 
-    public function purchases() {
-        return view('purchases/purchases', ['products' => $this->productRepository->allProducts()]);
+    public function createView()
+    {
+        return view('purchases/createView', ['products' => $this->productRepository->listAllProducts()]);
     }
 
-    public function purchasesCreate(Request $request)
+    public function create(Request $request)
     {
         $this->validateRequest($request);
 
@@ -61,12 +62,12 @@ class PurchasesController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function addStock()
+    public function stockView()
     {
-        return view('purchases/addStock');
+        return view('purchases/stockView');
     }
 
-    public function increaseStock(Request $request)
+    public function stock(Request $request)
     {
 
         $this->validateRequest($request);

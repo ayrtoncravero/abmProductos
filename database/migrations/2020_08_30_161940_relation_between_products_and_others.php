@@ -20,7 +20,7 @@ class RelationBetweenProductsAndOthers extends Migration
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('category_id');
             $table->foreign('provider_id')->references('id')->on('providers');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

@@ -11,7 +11,7 @@ class ProductRepository
         $product->save();
     }
 
-    public function allProducts() {
+    public function listAllProducts() {
         return Product::query()->get();
     }
 
@@ -24,14 +24,14 @@ class ProductRepository
         $product->delete();
     }
 
-    public function searchForNameAndDescription(Request $request) {
+    public function searchByNameAndDescription(string $name) {
         return $product = Product::where([
-            ['name', 'like', '%' . $request->query('name') . '%'],
-            ['description', 'like', '%' . $request->query('name') . '%']
+            ['name', 'like', '%' . $name . '%'],
+            ['description', 'like', '%' . $name . '%']
         ])->get();
     }
 
-    public function lowStock() {
+    public function listProductsWithLOwStock() {
         return Product::where('stock', '<=', 5)->get();
     }
 

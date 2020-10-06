@@ -42,9 +42,9 @@ class ProvidersController extends Controller
         return view('providers/providers', ['providers' => $this->providerRepository->allProviders()]);
     }
 
-    public function providersEdit(string $id)
+    public function edit(string $id)
     {
-        return view('providers/providersEdit', ['provider' => $this->providerRepository->searchFindOrFail($id)]);
+        return view('providers/edit', ['provider' => $this->providerRepository->searchFindOrFail($id)]);
     }
 
     public function update(string $id, Request $request)

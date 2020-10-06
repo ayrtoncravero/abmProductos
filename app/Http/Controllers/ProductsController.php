@@ -37,7 +37,7 @@ class ProductsController extends Controller
 
     public function createView()
     {
-        return view('products/createView', ['providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->allCategorys()]);
+        return view('products/createView', ['providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
     }
 
     public function create(Request $request)
@@ -57,19 +57,26 @@ class ProductsController extends Controller
 
     public function products()
     {
-        return view('products/products', ['products' => $this->productRepository->allProducts()]);
+        return view('products/products', ['products' => $this->productRepository->listAllProducts()]);
     }
 
     public function edit(string $id)
     {
-        return view('products/edit', ['product' => $this->productRepository->findOrFail($id), 'providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->allCategorys()]);
+        return view('products/edit', ['product' => $this->productRepository->findOrFail($id), 'providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
     }
 
     public function update(Request $request, string $id)
     {
         $this->validateRequest($request);
 
-        $this->productService->update($id, $request->input('code'), $request->input('name'), $request->input('description'), $request->input('price'), $request->input('provider'), $request->input('category'));
+        $this->productService->update($id,
+            $request->input('code'),
+            $request->input('name'),
+            $request->input('description'),
+            $request->input('price'),
+            $request->input('provider'),
+            $request->input('category')
+        );
 
         return redirect(route('ProductsController@products'));
     }
@@ -88,13 +95,11 @@ class ProductsController extends Controller
 
     public function search(Request $request)
     {
-        $products = '';
-
         $this->validateRequest($request);
 
         $name = $request->input("name");
 
-        $this->productRepository->searchForNameAndDescription($name);
+        $products = $this->productRepository->searchByNameAndDescription($name);
 
         return view('products/products', ['products' => $products]);
     }

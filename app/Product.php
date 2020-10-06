@@ -62,9 +62,9 @@ class Product extends Model
         return $this->provider;
     }
 
-    public function setCategory(Category $category)
+    public function setCategory(Category $categories)
     {
-        $this->category()->associate($category);
+        $this->category()->associate($categories);
     }
 
     public function getCategory(): Category
@@ -76,6 +76,7 @@ class Product extends Model
     {
         $this->stock = $stock;
     }
+
     public function getStock()
     {
         return $this->stock;

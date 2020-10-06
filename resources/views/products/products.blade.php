@@ -49,7 +49,7 @@
             @endforeach
         </table>
 
-        <form action="{{ route('ProductsController@productsNew') }}">
+        <form action="{{ route('ProductsController@createView') }}">
             <input class="button-primary" type="submit" value="Crear producto">
         </form>
         <a href="{{ route('HomeController@home') }}">Regresar</a>

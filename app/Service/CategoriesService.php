@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Category;
 use App\Repository\CategoryRepository;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class CategoriesService
@@ -39,18 +38,12 @@ class CategoriesService
         $this->categoryRepository->save($category);
     }
 
-    public function destroy(string $id, CategoryRepository $repository)
+    public function destroy(string $id)
     {
-        $category = $this->$repository->searchFindOrFail($id);
+        $category = $this->categoryRepository->searchFindOrFail($id);
 
         $category->delete();
     }
-
-    /*public function validatorName(Request $request) {
-        $request->validate([
-            'name' => 'required',
-        ]);
-    }*/
 
     public function validatorName(string $name) {
         if($name == null){
@@ -59,5 +52,4 @@ class CategoriesService
             ]);
         }
     }
-
 }

@@ -10,13 +10,14 @@ class ProviderService
 {
     private $providerRepository;
 
-    public function __construct(ProviderRepository $providerRepository) {
+    public function __construct(ProviderRepository $providerRepository)
+    {
         $this->providerRepository = $providerRepository;
     }
 
     public function create(string $code, string $name, string $description)
     {
-        $this->validator($code, $name);
+        $this->validate($code, $name);
 
         $provider = new Provider();
 
@@ -27,9 +28,9 @@ class ProviderService
         $this->providerRepository->save($provider);
     }
 
-    public function update(string $id, string $code, string $name, string $description) {
-
-        $this->validator($code, $name);
+    public function update(string $id, string $code, string $name, string $description)
+    {
+        $this->validate($code, $name);
 
         $provider = $this->providerRepository->searchFindOrFail($id);
 
@@ -40,7 +41,8 @@ class ProviderService
         $this->providerRepository->save($provider);
     }
 
-    public function validator(string $code, string $name) {
+    public function validate(string $code, string $name)
+    {
         if ($code === null) {
             throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',

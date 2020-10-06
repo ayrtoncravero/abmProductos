@@ -18,7 +18,7 @@
                     <td>{{ $category->getName() }}</td>
                     <td>{{ $category->getDescription() }}</td>
                     <td>
-                        <form action="{{ route('CategoriesController@edit', ['id' => $category->getId()]) }}">
+                        <form action="{{ route('CategoriesController@editView', ['id' => $category->getId()]) }}">
                             <input type="submit" class="button-primary" value="Editar">
                         </form>
                     </td>
@@ -31,7 +31,7 @@
             @endforeach
         </table>
 
-        <form action="{{ route('CategoriesController@categoriesNew') }}">
+        <form action="{{ route('CategoriesController@createView') }}">
             <input type="submit" class="button-primary" value="Crear categoria">
         </form>
 

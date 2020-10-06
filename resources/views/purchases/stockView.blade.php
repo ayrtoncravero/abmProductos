@@ -16,7 +16,7 @@
             </div>
         @endif
 
-        <form action="{{ route('PurchasesController@increaseStock') }}" method="POST">
+        <form action="{{ route('PurchasesController@stock') }}" method="POST">
             @csrf
             <label>Codigo:</label>
             <input type="number" name="code" required min="1"><br>
