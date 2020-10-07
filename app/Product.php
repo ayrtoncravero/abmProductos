@@ -4,6 +4,8 @@ namespace App;
 
 use App\Exceptions\InvalidQuantityException;
 use Illuminate\Database\Eloquent\Model;
+use Money\Currency;
+use Money\Money;
 
 class Product extends Model
 {
@@ -42,14 +44,14 @@ class Product extends Model
         return $this->description;
     }
 
-    public function setPrice(int $price)
+    public function setPrice(Money $price)
     {
-        $this->price = $price;
+        $this->price = $price->getAmount();
     }
 
-    public function getPrice(): float
+    public function getPrice(): Money
     {
-        return $this->price;
+        return new Money($this->price, new Currency('ARS'));
     }
 
     public function setProvider(Provider $provider)

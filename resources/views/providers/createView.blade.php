@@ -12,13 +12,13 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('ProvidersController@create') }}" method="POST">
+    <form action="{{ route('ProvidersController@create') }}" method="POST" onsubmit="validation()">
         @csrf
         <label>Codigo:</label>
-        <input type="text" required min="1" max="6" name="code">
+        <input type="text" required min="1" max="6" name="code" id="code">
 
         <label>Nombre:</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" required id="name">
 
         <label>Descripcion:</label>
         <input type="text" name="description"><br>
@@ -29,4 +29,6 @@
     <form action="{{ route('ProvidersController@providers') }}">
         <input class="button-primary" type="submit" value="Cancelar">
     </form>
+
+    <script src="/Validations/provider.js"></script>
 @endsection

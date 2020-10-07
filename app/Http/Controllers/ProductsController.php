@@ -7,6 +7,8 @@ use App\Repository\ProductRepository;
 use App\Repository\ProductService;
 use App\Repository\ProviderRepository;
 use Illuminate\Http\Request;
+use Money\Currency;
+use Money\Money;
 
 class ProductsController extends Controller
 {
@@ -47,7 +49,7 @@ class ProductsController extends Controller
         $this->productService->create($request->input('code'),
             $request->input('name'),
             $request->input('description'),
-            $request->input('price'),
+            new Money($request->input('price') * 100, new Currency('ARS')),
             $request->input('provider'),
             $request->input('category')
         );
@@ -73,7 +75,7 @@ class ProductsController extends Controller
             $request->input('code'),
             $request->input('name'),
             $request->input('description'),
-            $request->input('price'),
+            new Money($request->input('price') * 100, new Currency('ARS')),
             $request->input('provider'),
             $request->input('category')
         );
@@ -83,7 +85,6 @@ class ProductsController extends Controller
 
     public function destroyView(string $id)
     {
-
         return view('products/destroyView', ['product' => $this->productRepository->findOrFail($id)]);
     }
 

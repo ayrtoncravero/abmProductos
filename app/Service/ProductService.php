@@ -3,6 +3,8 @@ namespace App\Repository;
 
 use App\Product;
 use Illuminate\Validation\ValidationException;
+use Money\Currency;
+use Money\Money;
 
 class ProductService
 {
@@ -20,7 +22,7 @@ class ProductService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function create(string $code, string $name, string $description,float $price, string $provider, string $category)
+    public function create(string $code, string $name, string $description,Money $price, string $provider, string $category)
     {
         $this->validateAll($code, $name, $description, $price, $provider, $category);
 
@@ -40,7 +42,7 @@ class ProductService
         $this->productRepository->save($product);
     }
 
-    public function update(string $id, string $code, string $name, string $description,float $price, string $provider, string $category) {
+    public function update(string $id, string $code, string $name, string $description,Money $price, string $provider, string $category) {
 
         $this->validateAll($code, $name, $description, $price, $provider, $category);
 
@@ -60,7 +62,7 @@ class ProductService
         $this->productRepository->save($product);
     }
 
-    public function validateAll(string $code, string $name, string $description, float $price, string $provider, string $category) {
+    public function validateAll(string $code, string $name, string $description, Money $price, string $provider, string $category) {
         if ($code === null) {
             throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',
@@ -99,12 +101,12 @@ class ProductService
             ]);
         }
 
-        if ($price === null) {
+        if ($price->isZero()) {
             throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser vacio',
             ]);
         }
-        if ($price <= 0) {
+        if ($price->isNegative()) {
             throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser cero, ni menor a cero',
             ]);

@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Product;
-use http\Env\Request;
 
 class ProductRepository
 {
