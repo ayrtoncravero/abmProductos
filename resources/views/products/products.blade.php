@@ -27,21 +27,21 @@
             </tr>
             @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->getCode() }}</td>
-                    <td>{{ $product->getName() }}</td>
+                    <td>{{ $product->code }}</td>
+                    <td>{{ $product->name }}</td>
                     <td>{{ $product->getDescription() }}</td>
-                    <td>{{ $product->getPrice() }}</td>
+                    <td>{{ $product->price }}</td>
                     <td>{{ $product->getStock() }}</td>
                     <td>{{ $product->getProvider()->getName() }}</td>
                     <td>{{ $product->getCategory()->getName() }}</td>
                     <td>
-                        <form action="{{ route('ProductsController@edit', ['id' => $product->getId()]) }}">
+                        <form action="{{ route('ProductsController@edit', ['id' => $product->id ]) }}">
                             @csrf
                             <input type="submit" class="button-primary" value="Editar">
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('ProductsController@destroyView', ['id' => $product->getId()]) }}">
+                        <form action="{{ route('ProductsController@destroyView', ['id' => $product->id ]) }}">
                             <input type="submit" class="button-primary" value="Borrar">
                         </form>
                     </td>

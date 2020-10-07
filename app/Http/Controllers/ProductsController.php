@@ -59,7 +59,19 @@ class ProductsController extends Controller
 
     public function products()
     {
-        return view('products/products', ['products' => $this->productRepository->listAllProducts()]);
+        $productList = [];
+
+        $products = $this->productRepository->listAllProducts();
+
+        foreach ($products as $product) {
+            array_push($productList, [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'price' => ($product->getPrice()->getAmount() / 100),
+            ]);
+        }
+
+        return view('products/products', [ 'products' => $productList ]);
     }
 
     public function edit(string $id)

@@ -10,6 +10,9 @@ class ProductRepository
         $product->save();
     }
 
+    /**
+     * @return Product[]
+     */
     public function listAllProducts() {
         return Product::query()->get();
     }
