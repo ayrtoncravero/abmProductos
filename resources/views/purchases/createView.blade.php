@@ -16,17 +16,17 @@
         <form action="{{ route('PurchasesController@create') }}" method="POST" onsubmit="validation()">
             @csrf
             <label>Codigo:</label>
-            <input type="text" name="code" required id="code"><br>
+            <input type="text" name="code" id="code" value="{{ old('name') }}"><br>
 
             <label>Producto:</label>
-            <select name="product" id="product">
+            <select name="product" id="product" value="{{ old('product') }}">
                 @foreach($products as $product)
                     <option value="{{ $product->getId() }}">{{ $product->getName() }}</option>
                 @endforeach
             </select>
 
             <label>Cantidad de productos:</label>
-            <input type="number" name="quantity" required min="1" id="quantity"><br>
+            <input type="number" name="quantity" id="quantity" value="{{ old('quantity') }}"><br>
 
             <input class="button-primary" type="submit" value="Comprar">
         </form>
@@ -34,5 +34,5 @@
         <a href="{{route('HomeController@home')}}">Regresar</a>
     </div>
 
-    <script src="/Validations/purchase"></script>
+    <script src="/Validations/Purchase/purchase.js"></script>
 @endsection

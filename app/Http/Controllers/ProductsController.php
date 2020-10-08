@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProductService;
@@ -66,8 +67,13 @@ class ProductsController extends Controller
         foreach ($products as $product) {
             array_push($productList, [
                 'id' => $product->getId(),
+                'code' => $product->getCode(),
                 'name' => $product->getName(),
+                'description' => $product->getDescription(),
                 'price' => ($product->getPrice()->getAmount() / 100),
+                'stock' => $product->getStock(),
+                'provider' => $product->getProvider(),
+                'category' => $product->getCategory(),
             ]);
         }
 
@@ -76,7 +82,18 @@ class ProductsController extends Controller
 
     public function edit(string $id)
     {
-        return view('products/edit', ['product' => $this->productRepository->findOrFail($id), 'providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
+        $product = $this->productRepository->findOrFail($id);
+
+        return view('products/edit', ['product' => [
+            'id' => $product->getId(),
+            'code' => $product->getCode(),
+            'name' => $product->getName(),
+            'description' => $product->getDescription(),
+            'price' => ($product->getPrice()->getAmount() / 100),
+            'stock' => $product->getStock(),
+            'provider' => $product->getProvider(),
+            'category' => $product->getCategory(),
+        ], 'providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
     }
 
     public function update(Request $request, string $id)
@@ -110,7 +127,7 @@ class ProductsController extends Controller
     {
         $this->validateRequest($request);
 
-        $name = $request->input("name");
+        $name = $request->input("search");
 
         $products = $this->productRepository->searchByNameAndDescription($name);
 

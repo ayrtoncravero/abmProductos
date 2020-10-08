@@ -15,13 +15,13 @@
     <form action="{{ route('ProvidersController@create') }}" method="POST" onsubmit="validation()">
         @csrf
         <label>Codigo:</label>
-        <input type="text" required min="1" max="6" name="code" id="code">
+        <input type="text" name="code" id="code" value="{{ old('code') }}">
 
         <label>Nombre:</label>
-        <input type="text" name="name" required id="name">
+        <input type="text" name="name" id="name" value="{{ old('name') }}">
 
         <label>Descripcion:</label>
-        <input type="text" name="description"><br>
+        <input type="text" name="description" value="{{ old('description') }}"><br>
 
         <input class="button-primary" type="submit" value="Crear">
     </form>
@@ -30,5 +30,5 @@
         <input class="button-primary" type="submit" value="Cancelar">
     </form>
 
-    <script src="/Validations/provider.js"></script>
+    <script src="/Validations/Provider/provider.js"></script>
 @endsection

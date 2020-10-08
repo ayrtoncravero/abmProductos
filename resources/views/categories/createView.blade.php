@@ -2,6 +2,7 @@
 
 @section('title', 'Crear nueva categoria')
 @section('body')
+
     <h1>Crear nueva categoria</h1>
     @if ($errors->any())
         <div>
@@ -16,14 +17,15 @@
     <form action="{{ route('CategoriesController@create') }}" method="POST" onsubmit="validation()">
         @csrf
         <label>Nombre:</label>
-        <input type="text" name="name" required min="1" id="name">
+        <input type="text" name="name" id="name" value="{{ old('name') }}">
 
         <label>Descripcion:</label>
-        <input type="text" name="description"><br>
+        <input type="text" name="description" value="{{ old('description') }}"><br>
 
         <input class="button-primary" type="submit" value="Crear">
     </form>
+
     <a href="{{ route('CategoriesController@categories') }}">Regresar</a>
 
-    <scripts src="/Validations/category.js"></scripts>
+    <script src="/Validations/Category/category.js"></script>
 @endsection

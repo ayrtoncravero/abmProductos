@@ -18,6 +18,23 @@ class ReportsController extends Controller
 
     public function stock()
     {
-        return view('reports/stock', ['products' => $this->productRepository->listProductsWithLOwStock()]);
+        $productList = [];
+
+        $products = $this->productRepository->listProductsWithLOwStock();
+
+        foreach ($products as $product) {
+            array_push($productList, [
+                'id' => $product->getId(),
+                'code' => $product->getCode(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'price' => ($product->getPrice()->getAmount() / 100),
+                'stock' => $product->getStock(),
+                'provider' => $product->getProvider(),
+                'category' => $product->getCategory(),
+            ]);
+        }
+
+        return view('reports/stock', ['products' => $productList]);
     }
 }

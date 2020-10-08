@@ -27,7 +27,7 @@ class ProductRepository
     }
 
     public function searchByNameAndDescription(string $name) {
-        return $product = Product::where([
+        return Product::where([
             ['name', 'like', '%' . $name . '%'],
             ['description', 'like', '%' . $name . '%']
         ])->get();

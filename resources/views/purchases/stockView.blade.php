@@ -16,17 +16,19 @@
             </div>
         @endif
 
-        <form action="{{ route('PurchasesController@stock') }}" method="POST">
+        <form action="{{ route('PurchasesController@stock') }}" method="POST" onsubmit="validation()">
             @csrf
             <label>Codigo:</label>
-            <input type="number" name="code" required min="1"><br>
+            <input type="number" name="code" id="code"><br>
 
             <label>Cantidad de productos:</label>
-            <input type="number" name="quantity" required min="1"><br>
+            <input type="number" name="quantity" id="quantity"><br>
 
             <input class="button-primary" type="submit" value="Agregar stock">
         </form>
 
         <a href="{{route('HomeController@home')}}">Regresar</a>
     </div>
+
+    <script src="/Validations/Stock/stock.js"></script>
 @endsection

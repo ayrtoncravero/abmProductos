@@ -31,7 +31,7 @@
         </table>
 
         <form action="{{ route('ProvidersController@createView') }}">
-            <input class="button-primary" type="submit" value="Crear proveedor">
+            <input class="button-primary" type="submit" value="Crear">
         </form>
         <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>

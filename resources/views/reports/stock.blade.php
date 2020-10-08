@@ -17,13 +17,13 @@
             </tr>
             @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->getCode() }}</td>
-                    <td>{{ $product->getName() }}</td>
-                    <td>{{ $product->getDescription() }}</td>
-                    <td>{{ $product->getPrice() }}</td>
-                    <td>{{ $product->getProvider()->getName() }}</td>
-                    <td>{{ $product->getCategory()->getName() }}</td>
-                    <td>{{ $product->getStock() }}</td>
+                    <td>{{ $product['code'] }}</td>
+                    <td>{{ $product['name'] }}</td>
+                    <td>{{ $product['description'] }}</td>
+                    <td>{{ $product['price'] }}</td>
+                    <td>{{ $product['provider']->getName() }}</td>
+                    <td>{{ $product['category']->getName() }}</td>
+                    <td>{{ $product['stock'] }}</td>
                 </tr>
             @endforeach
         </table>

@@ -32,7 +32,7 @@
         </table>
 
         <form action="{{ route('CategoriesController@createView') }}">
-            <input type="submit" class="button-primary" value="Crear categoria">
+            <input type="submit" class="button-primary" value="Crear">
         </form>
 
         <a href="{{ route('HomeController@home') }}">Regresar</a>

@@ -6,10 +6,10 @@
     <div class="container">
         <h1>Todos los productos</h1>
 
-        <form action="{{ route('ProductsController@search') }}" method="GET">
-            <p>Buscador:</p>
-            <label>Nombre:</label>
-            <input type="text" name="name"><br>
+        <form action="{{ route('ProductsController@search') }}" method="GET" onsubmit="validation()">
+            <label>Buscador</label>
+            <label>Nombre o descripcion:</label>
+            <input type="text" name="search" id="search"><br>
             <input class="button-primary" type="submit" value="Buscar">
         </form><br>
 
@@ -27,21 +27,21 @@
             </tr>
             @foreach($products as $product)
                 <tr>
-                    <td>{{ $product->code }}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->getDescription() }}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->getStock() }}</td>
-                    <td>{{ $product->getProvider()->getName() }}</td>
-                    <td>{{ $product->getCategory()->getName() }}</td>
+                    <td>{{ $product['code'] }}</td>
+                    <td>{{ $product['name'] }}</td>
+                    <td>{{ $product['description'] }}</td>
+                    <td>{{ $product['price'] }}</td>
+                    <td>{{ $product['stock'] }}</td>
+                    <td>{{ $product['provider']->getName() }}</td>
+                    <td>{{ $product['category']->getName() }}</td>
                     <td>
-                        <form action="{{ route('ProductsController@edit', ['id' => $product->id ]) }}">
+                        <form action="{{ route('ProductsController@edit', ['id' => $product['id'] ]) }}">
                             @csrf
                             <input type="submit" class="button-primary" value="Editar">
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('ProductsController@destroyView', ['id' => $product->id ]) }}">
+                        <form action="{{ route('ProductsController@destroyView', ['id' => $product['id'] ]) }}">
                             <input type="submit" class="button-primary" value="Borrar">
                         </form>
                     </td>
@@ -50,8 +50,10 @@
         </table>
 
         <form action="{{ route('ProductsController@createView') }}">
-            <input class="button-primary" type="submit" value="Crear producto">
+            <input class="button-primary" type="submit" value="Crear">
         </form>
         <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
+
+    <script src="/Validations/Product/search.js"></script>
 @endsection

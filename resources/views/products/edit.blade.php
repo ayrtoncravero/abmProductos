@@ -3,6 +3,7 @@
 @section('title', 'Editar producto')
 @section('body')
     <div class="container">
+        <h1>Editar producto</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -12,29 +13,33 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('ProductsController@update', ['id' => $product->getId()]) }}" method="POST">
+        <form action="{{ route('ProductsController@update', ['id' => $product['id'] ]) }}" method="POST" onsubmit="validation()">
             @csrf
             <label>Codigo:</label>
-            <input type="text" name="code" value="{{ $product->getCode() }}">
+            <input type="text" name="code" id="code" value="{{ $product['code'] }}">
 
             <label>Nombre:</label>
-            <input type="text" name="name" value="{{ $product->getName() }}">
+            <input type="text" name="name" id="name" value="{{ $product['name'] }}">
 
             <label>Descripcion:</label>
-            <input type="text" name="description" value="{{ $product->getDescription() }}">
+            <input type="text" name="description" id="description" value="{{ $product['description'] }}">
 
             <label>Precio:</label>
-            <input type="number" name="price" value="{{ $product->getPrice() }}">
+            <input type="number" name="price" id="price" value="{{ $product['price'] }}">
 
             <label>Proveedores:</label>
-            <select name="provider">
+            <select name="provider" id="provider">
                 @foreach($providers as $provider)
-                    <option value="{{ $provider->id }}">{{ $provider->getName() }}</option>
+                        @if($provider->id === $product['provider']->id)
+                            <option selected value="{{ $provider->id }}">{{ $provider->getName() }}</option>
+                        @else
+                            <option value="{{ $provider->id }}">{{ $provider->getName() }}</option>
+                        @endif
                 @endforeach
             </select><br>
 
             <label>Categorias:</label>
-            <select name="category">
+            <select name="category" id="category">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->getName() }}</option>
                 @endforeach
@@ -45,4 +50,6 @@
 
             <a href="{{ route('ProductsController@products') }}">Regresar</a>
     </div>
+
+    <script src="/Validations/Product/product.js"></script>
 @endsection

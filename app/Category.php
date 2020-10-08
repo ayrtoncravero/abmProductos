@@ -11,6 +11,14 @@ class Category extends Model
         return $this->id;
     }
 
+    public function setCode(string $code) {
+        $this->code = $code;
+    }
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
     public function setName(string $name)
     {
         $this->name = $name;
