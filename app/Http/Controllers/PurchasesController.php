@@ -40,8 +40,9 @@ class PurchasesController extends Controller
         $quantity = $request->input('quantity');
         $product = $request->input('product');
 
-        if ($this->purchaseRepository->verifyIfCodeIsExist($code))
-        {
+
+        if ($this->purchaseRepository->verifyIfCodeIsExist($code)) {
+
             throw new \InvalidArgumentException('Codigo no existente');
         }
 

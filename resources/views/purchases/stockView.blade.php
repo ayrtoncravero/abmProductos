@@ -18,10 +18,10 @@
         <form action="{{ route('PurchasesController@stock') }}" method="POST" onsubmit="validation()">
             @csrf
             <label>Codigo:</label>
-            <input type="number" name="code" id="code"><br>
+            <input type="number" name="code" id="code" value="{{ old('code') }}"><br>
 
             <label>Cantidad de productos:</label>
-            <input type="number" name="quantity" id="quantity"><br>
+            <input type="number" name="quantity" id="quantity" value="{{ old('quantity') }}"><br>
 
             <input class="button-primary" type="submit" value="Agregar">
         </form>
