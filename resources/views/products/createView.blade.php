@@ -2,9 +2,19 @@
 
 @section('title', 'Crear nuevo producto')
 @section('body')
-    @include('layouts/errors')
     <div class="container">
         <h1>Crear nuevo producto</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('ProductsController@create') }}" method="POST" onsubmit="validation()">
             @csrf
             <label>Codigo:</label>

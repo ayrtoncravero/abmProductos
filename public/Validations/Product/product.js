@@ -13,7 +13,7 @@ function validation() {
         alert("El codigo no puede ser vacio");
         return false;
     }
-    else if (code.length < 1) {
+    else if (code.length < 6) {
         alert("El codigo no puede ser menor a 1");
         return false;
     }

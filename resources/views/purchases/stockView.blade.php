@@ -5,7 +5,6 @@
 @section('body')
     <div class="container">
         <h1>Agregar stock</h1>
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -24,7 +23,7 @@
             <label>Cantidad de productos:</label>
             <input type="number" name="quantity" id="quantity"><br>
 
-            <input class="button-primary" type="submit" value="Agregar stock">
+            <input class="button-primary" type="submit" value="">
         </form>
 
         <a href="{{route('HomeController@home')}}">Regresar</a>

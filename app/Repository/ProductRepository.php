@@ -26,10 +26,10 @@ class ProductRepository
         $product->delete();
     }
 
-    public function searchByNameAndDescription(string $name) {
+    public function searchByNameAndDescription($search) {
         return Product::where([
-            ['name', 'like', '%' . $name . '%'],
-            ['description', 'like', '%' . $name . '%']
+            ['name', 'like', '%' . $search . '%'],
+            ['description', 'like', '%' . $search . '%']
         ])->get();
     }
 

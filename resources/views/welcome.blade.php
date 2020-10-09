@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Crud productos
+                    Crud products
                 </div>
 
                 <div class="links">

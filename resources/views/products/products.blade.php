@@ -2,9 +2,19 @@
 
 @section('title', 'Productos')
 @section('body')
-
+    @include('layouts/errors')
     <div class="container">
         <h1>Todos los productos</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form action="{{ route('ProductsController@search') }}" method="GET" onsubmit="validation()">
             <label>Buscador</label>

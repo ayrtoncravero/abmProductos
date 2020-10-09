@@ -125,11 +125,9 @@ class ProductsController extends Controller
 
     public function search(Request $request)
     {
-        $this->validateRequest($request);
+        $search = $request->input("search");
 
-        $name = $request->input("search");
-
-        $products = $this->productRepository->searchByNameAndDescription($name);
+        $products = $this->productRepository->searchByNameAndDescription($search);
 
         return view('products/products', ['products' => $products]);
     }
