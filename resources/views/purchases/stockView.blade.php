@@ -23,7 +23,7 @@
             <label>Cantidad de productos:</label>
             <input type="number" name="quantity" id="quantity"><br>
 
-            <input class="button-primary" type="submit" value="">
+            <input class="button-primary" type="submit" value="Agregar">
         </form>
 
         <a href="{{route('HomeController@home')}}">Regresar</a>

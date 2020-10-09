@@ -2,6 +2,7 @@
 
 @section('title', 'Crear nuevo proveedor')
 @section('body')
+
     <div class="container">
         <h1>Crear nuevo proveedor</h1>
         @if ($errors->any())
