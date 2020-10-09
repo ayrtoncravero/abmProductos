@@ -38,9 +38,9 @@ class CategoriesController extends Controller
         return redirect(route('CategoriesController@categories'));
     }
 
-    public function categories()
+    public function index()
     {
-        return view('categories/categories', ['categories' => $this->categoryRepository->findAll()]);
+        return view('categories/index', ['categories' => $this->categoryRepository->findAll()]);
     }
 
     public function editView(string $id)

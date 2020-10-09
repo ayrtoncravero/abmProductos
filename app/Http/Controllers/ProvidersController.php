@@ -37,9 +37,9 @@ class ProvidersController extends Controller
         return redirect(route('ProvidersController@providers'));
     }
 
-    public function providers()
+    public function index()
     {
-        return view('providers/providers', ['providers' => $this->providerRepository->allProviders()]);
+        return view('providers/index', ['providers' => $this->providerRepository->allProviders()]);
     }
 
     public function edit(string $id)

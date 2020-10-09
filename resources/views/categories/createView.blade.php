@@ -25,7 +25,7 @@
             <input class="button-primary" name="submit" type="submit" value="Crear">
         </form>
 
-        <a href="{{ route('CategoriesController@categories') }}">Regresar</a>
+        <a href="{{ route('CategoriesController@index') }}">Regresar</a>
 
         <script src="/Validations/Category/category.js"></script>
     </div>

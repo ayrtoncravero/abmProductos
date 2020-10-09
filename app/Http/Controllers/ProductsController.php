@@ -58,7 +58,7 @@ class ProductsController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function products()
+    public function index()
     {
         $productList = [];
 

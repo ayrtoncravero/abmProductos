@@ -64,9 +64,9 @@ class PurchasesController extends Controller
         return redirect(route('ProductsController@products'));
     }
 
-    public function stockView()
+    public function index()
     {
-        return view('purchases/stockView');
+        return view('purchases/index');
     }
 
     public function stock(Request $request)

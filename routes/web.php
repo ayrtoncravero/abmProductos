@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@home')->name('HomeController@home');
 
 Route::get('/providers/new', 'ProvidersController@createView')->name('ProvidersController@createView');
 Route::post('/providers', 'ProvidersController@create')->name('ProvidersController@create');
-Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
+Route::get('/providers', 'ProvidersController@index')->name('ProvidersController@index');
 Route::get('/providers/{id}/edit', 'ProvidersController@edit')->name('ProvidersController@edit');
 Route::post('/providers/{id}', 'ProvidersController@update')->name('ProvidersController@update');
 Route::get('/providers/{id}/destroyView', 'ProvidersController@destroyView')->name('ProvidersController@destroyView');
@@ -29,7 +29,7 @@ Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('P
 
 Route::get('/categories/new', 'CategoriesController@createView')->name('CategoriesController@createView');
 Route::post('/categories', 'CategoriesController@create')->name('CategoriesController@create');
-Route::get('/categories', 'CategoriesController@categories')->name('CategoriesController@categories');
+Route::get('/categories', 'CategoriesController@index')->name('CategoriesController@index');
 Route::get('/categories/{id}/edit', 'CategoriesController@editView')->name('CategoriesController@editView');
 Route::post('/categories/{id}', 'CategoriesController@update')->name('CategoriesController@update');
 Route::get('categories/{id}/destroyView', 'CategoriesController@destroyView')->name('CategoriesController@destroyView');
@@ -37,7 +37,7 @@ Route::delete('/categories/{id}/destroy', 'CategoriesController@destroy')->name(
 
 Route::get('/products/new', 'ProductsController@createView')->name('ProductsController@createView');
 Route::post('/products', 'ProductsController@create')->name('ProductsController@create');
-Route::get('/products', 'ProductsController@products')->name('ProductsController@products');
+Route::get('/products', 'ProductsController@index')->name('ProductsController@index');
 Route::get('/products/{id}/edit', 'ProductsController@edit')->name('ProductsController@edit');
 Route::post('/products/{id}', 'ProductsController@update')->name('ProductsController@update');
 Route::get('/products/{id}/destroyView', 'ProductsController@destroyView')->name('ProductsController@destroyView');
@@ -46,8 +46,7 @@ Route::get('/search', 'ProductsController@search')->name('ProductsController@sea
 
 Route::get('/purchases', 'PurchasesController@createView')->name('PurchasesController@createView');
 Route::post('/purchases', 'PurchasesController@create')->name('PurchasesController@create');
-Route::get('/stock', 'PurchasesController@stockView')->name('PurchasesController@stockView');
+Route::get('/stock', 'PurchasesController@index')->name('PurchasesController@index');
 Route::post('/stock', 'PurchasesController@stock')->name('PurchasesController@stock');
 
-Route::get('/reports', 'ReportsController@view')->name('ReportsController@View');
 Route::get('/reports/stock', 'ReportsController@stock')->name('ReportsController@stock');

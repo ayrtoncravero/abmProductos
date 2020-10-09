@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use phpDocumentor\Reflection\Type;
 use Tests\TestCase;
 
-class UsersCanCreateCategoriesTest extends TestCase
+class CategoryPathTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -15,7 +14,7 @@ class UsersCanCreateCategoriesTest extends TestCase
      * @test
      * @return void
      */
-    public function UsersCanCreateCategoriesTest()
+    public function CategoryPathTest()
     {
         $response = $this->get('/categories');
 
