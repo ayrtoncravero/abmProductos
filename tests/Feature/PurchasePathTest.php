@@ -11,9 +11,10 @@ class PurchasePathTest extends TestCase
     /**
      * A basic feature test example.
      *
+     * @test
      * @return void
      */
-    public function testExample()
+    public function PurchasePathTest()
     {
         $response = $this->get('/purchases');
 

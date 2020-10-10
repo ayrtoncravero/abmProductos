@@ -16,8 +16,10 @@ class CategoryPathTest extends TestCase
      */
     public function CategoryPathTest()
     {
-        $response = $this->get('/categories');
+        $response = $this->get(route('CategoriesController@index'));
 
         $response->assertStatus(200);
+
+        $response->assertViewIs('categories.index');
     }
 }
