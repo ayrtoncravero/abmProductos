@@ -11,7 +11,7 @@
             <p>Nombre: {{ $categories->getName() }}</p>
             <input type="submit" value="Eliminar" class="button-primary"><br>
         </form>
-        <form action="{{ route('CategoriesController@categories') }}">
+        <form action="{{ route('CategoriesController@index') }}">
             <input type="submit" class="button-primary" value="Cancelar">
         </form>
     </div>

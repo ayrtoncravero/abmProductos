@@ -2,6 +2,7 @@
 
 @section('title', 'Productos con stock bajo')
 @section('body')
+
     <div class="container">
         <h1>Productos con stock bajo</h1>
 

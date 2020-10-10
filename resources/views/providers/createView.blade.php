@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Crear nuevo proveedor')
+@section('title', 'Crear proveedor')
 @section('body')
 
     <div class="container">
@@ -28,7 +28,7 @@
             <input class="button-primary" type="submit" value="Crear">
         </form>
 
-        <form action="{{ route('ProvidersController@providers') }}">
+        <form action="{{ route('ProvidersController@index') }}">
             <input class="button-primary" type="submit" value="Cancelar">
         </form>
 

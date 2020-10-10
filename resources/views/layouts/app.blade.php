@@ -8,9 +8,11 @@
         <link rel="stylesheet" href="/Skeleton/css/skeleton.css">
         <link rel="icon" type="image/png" href="/Skeleton/images/favicon.png">
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/ChangeModeColor/changeMode.css">
         <title>@yield('title')</title>
     </head>
     <body>
         @yield('body')
+        <script src="/ChangeModeColor/changeMode.js"></script>
     </body>
 </html>

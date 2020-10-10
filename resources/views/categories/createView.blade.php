@@ -2,6 +2,7 @@
 
 @section('title', 'Crear nueva categoria')
 @section('body')
+
     <div class="container">
         <h1>Crear nueva categoria</h1>
         @if ($errors->any())

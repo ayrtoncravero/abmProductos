@@ -34,7 +34,7 @@ class ProvidersController extends Controller
 
         $this->providerService->create($request->input('code'), $request->input('name'), $request->input('description'));
 
-        return redirect(route('ProvidersController@providers'));
+        return redirect(route('ProvidersController@index'));
     }
 
     public function index()
@@ -53,7 +53,7 @@ class ProvidersController extends Controller
 
         $this->providerService->update($id, $request->input('code'), $request->input('name'), $request->input('description'));
 
-        return redirect(route('ProvidersController@providers'));
+        return redirect(route('ProvidersController@index'));
     }
 
     public function destroyView(string $id)
@@ -65,7 +65,7 @@ class ProvidersController extends Controller
     {
         $this->providerRepository->destroy($id);
 
-        return redirect(route('ProvidersController@providers'));
+        return redirect(route('ProvidersController@index'));
     }
 
     public function validateRequest(Request $request)

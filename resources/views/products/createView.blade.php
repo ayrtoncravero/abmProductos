@@ -2,6 +2,7 @@
 
 @section('title', 'Crear nuevo producto')
 @section('body')
+
     <div class="container">
         <h1>Crear nuevo producto</h1>
 
@@ -46,7 +47,7 @@
             <input class="button-primary" type="submit" value="Crear">
         </form>
 
-        <form action="{{ route('ProductsController@products') }}">
+        <form action="{{ route('ProductsController@index') }}">
             <input class="button-primary" type="submit" value="Cancelar">
         </form>
     </div>

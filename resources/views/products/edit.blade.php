@@ -2,6 +2,7 @@
 
 @section('title', 'Editar producto')
 @section('body')
+
     <div class="container">
         <h1>Editar producto</h1>
         @if ($errors->any())
@@ -48,7 +49,7 @@
             <input type="submit" value="Editar" class="button-primary">
         </form>
 
-            <a href="{{ route('ProductsController@products') }}">Regresar</a>
+            <a href="{{ route('ProductsController@index') }}">Regresar</a>
     </div>
 
     <script src="/Validations/Product/product.js"></script>

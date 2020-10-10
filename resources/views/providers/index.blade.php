@@ -2,6 +2,7 @@
 
 @section('title', 'Proveedores')
 @section('body')
+
     <div class="container">
         <h1>Todos los proveedores</h1>
 

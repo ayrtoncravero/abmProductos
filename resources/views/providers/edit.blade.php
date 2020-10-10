@@ -27,7 +27,7 @@
 
             <input class="button-primary" type="submit" value="Editar">
         </form>
-        <a href="{{ route('ProvidersController@providers') }}">Regresar</a>
+        <a href="{{ route('ProvidersController@index') }}">Regresar</a>
     </div>
 
     <script src="/Validations/Provider/provider.js"></script>

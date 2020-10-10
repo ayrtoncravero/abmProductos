@@ -2,6 +2,7 @@
 
 @section('title', 'Categorias')
 @section('body')
+
     <div class="container">
         <h1>Todas las categorias</h1>
 

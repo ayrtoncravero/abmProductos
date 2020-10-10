@@ -2,6 +2,7 @@
 
 @section('title', 'Confirmar compra')
 @section('body')
+
     <div class="container">
         <h1>Confirmar compra</h1>
         @if ($errors->any())
@@ -31,7 +32,7 @@
             <input class="button-primary" type="submit" value="Comprar">
         </form>
 
-        <a href="{{route('HomeController@home')}}">Regresar</a>
+        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 
     <script src="/Validations/Purchase/purchase.js"></script>

@@ -13,7 +13,7 @@
             <input type="submit" class="button-primary" value="Eliminar"><br>
         </form>
 
-        <form action="{{ route('ProductsController@products') }}">
+        <form action="{{ route('ProductsController@index') }}">
             <input type="submit" class="button-primary" value="Cancelar">
         </form>
     </div>

@@ -3,6 +3,7 @@
 @section('title', 'Productos')
 @section('body')
     @include('layouts/errors')
+
     <div class="container">
         <h1>Todos los productos</h1>
 

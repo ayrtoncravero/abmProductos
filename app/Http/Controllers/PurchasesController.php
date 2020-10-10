@@ -61,7 +61,7 @@ class PurchasesController extends Controller
         $this->productRepository->save($product);
         $this->purchaseRepository->save($purchase);
 
-        return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
     public function index()
@@ -82,7 +82,7 @@ class PurchasesController extends Controller
 
         $this->productRepository->save($product);
 
-        return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
     public function validateRequest(Request $request)

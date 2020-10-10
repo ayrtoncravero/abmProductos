@@ -55,7 +55,7 @@ class ProductsController extends Controller
             $request->input('category')
         );
 
-        return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
     public function index()
@@ -77,7 +77,7 @@ class ProductsController extends Controller
             ]);
         }
 
-        return view('products/products', [ 'products' => $productList ]);
+        return view('products/index', [ 'products' => $productList ]);
     }
 
     public function edit(string $id)
@@ -109,7 +109,7 @@ class ProductsController extends Controller
             $request->input('category')
         );
 
-        return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
     public function destroyView(string $id)
@@ -120,7 +120,8 @@ class ProductsController extends Controller
     public function destroy(string $id)
     {
         $this->productRepository->destroy($id);
-        return redirect(route('ProductsController@products'));
+
+        return redirect(route('ProductsController@index'));
     }
 
     public function search(Request $request)
@@ -129,7 +130,7 @@ class ProductsController extends Controller
 
         $products = $this->productRepository->searchByNameAndDescription($search);
 
-        return view('products/products', ['products' => $products]);
+        return view('products/index', ['products' => $products]);
     }
 
     public function validateRequest(Request $request)

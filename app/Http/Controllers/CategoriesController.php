@@ -35,7 +35,7 @@ class CategoriesController extends Controller
 
         $this->categoriesService->create($request->input('name'), $request->input('description'));
 
-        return redirect(route('CategoriesController@categories'));
+        return redirect(route('CategoriesController@index'));
     }
 
     public function index()
@@ -65,7 +65,8 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         $this->categoryRepository->destroy($id);
-        return redirect(route('CategoriesController@categories'));
+
+        return redirect(route('CategoriesController@index'));
     }
 
     public function validateRequest(Request $request)

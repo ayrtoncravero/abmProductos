@@ -3,6 +3,7 @@
 @section('title', 'Agregar stock')
 
 @section('body')
+
     <div class="container">
         <h1>Agregar stock</h1>
         @if ($errors->any())

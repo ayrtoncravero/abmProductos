@@ -3,11 +3,16 @@
 @section('title', 'Home')
 
 @section('body')
+
+    <div>
+        <input type="submit" onclick="changeMode()" value="Claro/Oscuro" class="button-primary">
+    </div>
+
     <div class="container">
         <br><br><br><br><br>
         <div class="row">
             <div class="one-third column">&nbsp;</div>
-            <div class="one-third column"><a href="{{ URL::route('ProvidersController@index') }}">Ver productos</a></div>
+            <div class="one-third column"><a href="{{ URL::route('ProductsController@index') }}">Ver productos</a></div>
             <div class="one-third column">&nbsp;</div>
         </div>
         <br>
@@ -42,4 +47,5 @@
         </div>
         <br><br><br><br><br>
     </div>
+
 @endsection
