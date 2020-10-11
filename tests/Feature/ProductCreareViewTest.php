@@ -6,17 +6,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PurchasePathTest extends TestCase
+class ProductCreareViewTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
-     * @test
      * @return void
      */
-    public function PurchasePathTest()
+    public function testExample()
     {
-        $response = $this->get('/purchases');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }

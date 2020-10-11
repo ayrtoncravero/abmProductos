@@ -6,18 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProviderPathCreateViewTest extends TestCase
+class PurchaseCreateTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
-     * @test
      * @return void
      */
-    public function ProviderPathCreateViewTest()
+    public function testExample()
     {
-        $response = $this->get(route('ProvidersController@createView'));
+        $response = $this->post(route('PurchasesController@create'), []);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 }

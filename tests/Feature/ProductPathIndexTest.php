@@ -18,6 +18,6 @@ class ProductPathIndexTest extends TestCase
     {
         $response = $this->get(route('ProductsController@createView'));
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
     }
 }
