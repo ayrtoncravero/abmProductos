@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class FailToCreateCategoryTest extends TestCase
+class itShouldGoTheCreationRouteButFailBecauseItIsSentWithEmptyInformationTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,7 +14,7 @@ class FailToCreateCategoryTest extends TestCase
      * @test
      * @return void
      */
-    public function FailToCreateCategoryTest()
+    public function itShouldGoTheCreationRouteButFailBecauseItIsSentWithEmptyInformationTest()
     {
         $response = $this->post(route('CategoriesController@create'), []);
 

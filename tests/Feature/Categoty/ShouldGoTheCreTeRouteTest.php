@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CategoryPathCreateWithPostTest extends TestCase
+class ShouldGoTheCreTeRouteTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,9 +14,9 @@ class CategoryPathCreateWithPostTest extends TestCase
      * @test
      * @return void
      */
-    public function CategoryPathCreateWithPostTest()
+    public function shouldGoTheCreTeRouteTest()
     {
-        $response = $this->get(route('CategoriesController@create'));
+        $response = $this->get(route('CategoriesController@createView'));
 
         $response->assertStatus(200);
     }

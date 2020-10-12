@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CategoryCreateViewTest extends TestCase
+class theCategoryPathShouldWorkTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,7 +14,7 @@ class CategoryCreateViewTest extends TestCase
      * @test
      * @return void
      */
-    public function CategoryCreateViewTest()
+    public function theCategoryPathShouldWorkTest()
     {
         $response = $this->get(route('CategoriesController@createView'));
 

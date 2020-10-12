@@ -19,8 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->bigInteger('price');
-            $table->string('providers');
-            $table->string('category');
+            $table->unsignedBigInteger('provider_id');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('provider_id')->references('id')->on('providers');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('stock')->default(0);
 
             $table->timestamps();

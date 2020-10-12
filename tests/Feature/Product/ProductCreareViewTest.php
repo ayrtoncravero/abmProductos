@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class HomePathHomeTest extends TestCase
+class ProductCreareViewTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,9 +14,9 @@ class HomePathHomeTest extends TestCase
      * @test
      * @return void
      */
-    public function HomePathHomeTest()
+    public function ProductCreareViewTest()
     {
-        $response = $this->get(route('HomeController@home'));
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }

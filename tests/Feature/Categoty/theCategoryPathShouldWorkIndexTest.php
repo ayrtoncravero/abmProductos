@@ -6,16 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProductCreareViewTest extends TestCase
+class theCategoryPathShouldWorkIndexTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
+     * @test
      * @return void
      */
-    public function testExample()
+    public function theCategoryPathShouldWorkIndexTest()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('CategoriesController@index'));
 
         $response->assertStatus(200);
     }
