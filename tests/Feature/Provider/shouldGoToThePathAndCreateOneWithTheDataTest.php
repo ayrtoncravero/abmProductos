@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class CreatingAProviderTest extends TestCase
+class shouldGoToThePathAndCreateOneWithTheDataTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,7 +14,7 @@ class CreatingAProviderTest extends TestCase
      * @test
      * @return void
      */
-    public function CreatingAProviderTest()
+    public function shouldGoToThePathAndCreateOneWithTheDataTest()
     {
         $this->post(route('ProvidersController@create'), [
             'code' => '123456',

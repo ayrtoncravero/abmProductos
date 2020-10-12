@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProductCreateTest extends TestCase
+class shouldGoTheRouteOfCreatingProductsTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,10 +14,10 @@ class ProductCreateTest extends TestCase
      * @test
      * @return void
      */
-    public function testExample()
+    public function shouldGoTheRouteOfCreatingProductsTest()
     {
-        $response = $this->post(route('ProductsController@create'), []);
+        $response = $this->get(route('ProductsController@createView'));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 }

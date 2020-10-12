@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class FailsToCreateProviderTest extends TestCase
+class shouldGoToTheCreateViewRouteTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,10 +14,10 @@ class FailsToCreateProviderTest extends TestCase
      * @test
      * @return void
      */
-    public function FailsToCreateProviderTest()
+    public function shouldGoToTheCreateViewRouteTest()
     {
-        $response = $this->post(route('ProvidersController@create'), []);
+        $response = $this->get(route('ProvidersController@createView'));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 }

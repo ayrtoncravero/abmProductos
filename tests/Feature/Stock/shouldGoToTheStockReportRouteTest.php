@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProductPathIndexTest extends TestCase
+class shouldGoToTheStockReportRouteTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,9 +14,9 @@ class ProductPathIndexTest extends TestCase
      * @test
      * @return void
      */
-    public function ProductPathIndexTest()
+    public function shouldGoToTheStockReportRouteTest()
     {
-        $response = $this->get(route('ProductsController@createView'));
+        $response = $this->get(route('ReportsController@stock'));
 
         $response->assertStatus(200);
     }

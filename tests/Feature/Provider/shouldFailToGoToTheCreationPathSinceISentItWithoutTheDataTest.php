@@ -6,16 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PurchaseStockTest extends TestCase
+class shouldFailToGoToTheCreationPathSinceISentItWithoutTheDataTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
+     * @test
      * @return void
      */
-    public function testExample()
+    public function shouldFailToGoToTheCreationPathSinceISentItWithoutTheDataTest()
     {
-        $response = $this->post(route('PurchasesController@stock'), []);
+        $response = $this->post(route('ProvidersController@create'), []);
 
         $response->assertStatus(302);
     }

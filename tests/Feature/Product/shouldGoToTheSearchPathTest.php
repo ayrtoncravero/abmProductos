@@ -6,16 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PurchaseCreateViewTest extends TestCase
+class shouldGoToTheSearchPathTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
+     * @test
      * @return void
      */
-    public function testExample()
+    public function shouldGoToTheSearchPathTest()
     {
-        $response = $this->get(route('PurchasesController@createView'));
+        $response = $this->get(route('ProductsController@search'));
 
         $response->assertStatus(200);
     }

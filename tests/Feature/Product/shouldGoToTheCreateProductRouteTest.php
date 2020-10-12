@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProviderPathCreateWithPostTest extends TestCase
+class shouldGoToTheCreateProductRouteTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -14,9 +14,9 @@ class ProviderPathCreateWithPostTest extends TestCase
      * @test
      * @return void
      */
-    public function ProviderPathCreateWithPostTest()
+    public function shouldGoToThePathAndCreateOneWithTheData()
     {
-        $response = $this->get(route('ProvidersController@create'));
+        $response = $this->get(route('ProductsController@create'));
 
         $response->assertStatus(200);
     }
