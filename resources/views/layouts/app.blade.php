@@ -11,12 +11,12 @@
         <link rel="stylesheet" href="/ChangeModeColor/changeMode.css">
         <link rel="stylesheet" href="/Btn-up/fonts.css">
         <link rel="stylesheet" href="/Btn-up/style.css">
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="/Btn-up/up.js"></script>
         <title>@yield('title')</title>
     </head>
     <body>
         @yield('body')
         <script src="/ChangeModeColor/changeMode.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="/Btn-up/up.js"></script>
     </body>
 </html>
