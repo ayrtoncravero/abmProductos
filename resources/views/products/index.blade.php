@@ -4,6 +4,8 @@
 @section('body')
     @include('layouts/errors')
 
+    <span class="up icon-chevron-up1"></span>
+
     <div class="container">
         <h1>Todos los productos</h1>
 

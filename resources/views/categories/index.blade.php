@@ -3,6 +3,8 @@
 @section('title', 'Categorias')
 @section('body')
 
+    <span class="up icon-chevron-up1"></span>
+
     <div class="container">
         <h1>Todas las categorias</h1>
 

@@ -3,6 +3,8 @@
 @section('title', 'Productos con stock bajo')
 @section('body')
 
+    <span class="up icon-chevron-up1"></span>
+
     <div class="container">
         <h1>Productos con stock bajo</h1>
 

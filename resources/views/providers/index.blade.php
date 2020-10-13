@@ -3,6 +3,8 @@
 @section('title', 'Proveedores')
 @section('body')
 
+    <span class="up icon-chevron-up1"></span>
+
     <div class="container">
         <h1>Todos los proveedores</h1>
 
