@@ -15,7 +15,7 @@ class ProviderService
         $this->providerRepository = $providerRepository;
     }
 
-    public function create(string $code, string $name, string $description)
+    public function create(string $code, string $name, ?string $description)
     {
         $this->validate($code, $name);
 
@@ -28,7 +28,7 @@ class ProviderService
         $this->providerRepository->save($provider);
     }
 
-    public function update(string $id, string $code, string $name, string $description)
+    public function update(string $id, string $code, string $name, ?string $description)
     {
         $this->validate($code, $name);
 

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('description');
-            $table->bigInteger('price');
+            $table->string('price');
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('category_id');
             $table->foreign('provider_id')->references('id')->on('providers');

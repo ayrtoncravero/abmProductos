@@ -79,6 +79,14 @@ class ProductService
             ]);
         }
 
+        $product =  $this->productRepository->searchByCode($code);
+
+        if (isset($product)) {
+            throw ValidationException::withMessages([
+                'code' => 'El codigo ya existe',
+            ]);
+        }
+
         if ($name === null) {
             throw ValidationException::withMessages([
                 'name' => 'Nombre no declarado',

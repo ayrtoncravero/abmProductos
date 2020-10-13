@@ -27,10 +27,9 @@ class ProductRepository
     }
 
     public function searchByNameAndDescription($search) {
-        return Product::where([
-            ['name', 'like', '%' . $search . '%'],
-            ['description', 'like', '%' . $search . '%']
-        ])->get();
+        $query = Product::query()->where('name', 'like', "%$search%");
+        $query->orWhere('description', 'like', "%$search%");
+        return $query->get();
     }
 
     public function listProductsWithLOwStock() {
@@ -39,5 +38,9 @@ class ProductRepository
 
     public function searchByCodeOrFail(string $code):Product {
         return Product::query()->where('code', '=', $code)->firstOrFail();
+    }
+
+    public function searchByCode(string $code): ?Product {
+        return Product::query()->where('code', '=', $code)->first();
     }
 }

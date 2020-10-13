@@ -14,7 +14,7 @@ class CategoriesService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function create(string $name, string $description)
+    public function create(string $name, ?string $description)
     {
         $this->validatorName($name);
 
@@ -26,7 +26,7 @@ class CategoriesService
         $this->categoryRepository->save($category);
     }
 
-    public function update(string $id, string $name, string $description) {
+    public function update(string $id, string $name, ?string $description) {
 
         $this->validatorName($name);
 

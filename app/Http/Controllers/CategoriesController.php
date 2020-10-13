@@ -30,7 +30,6 @@ class CategoriesController extends Controller
 
     public function create(Request $request)
     {
-
         $this->validateRequest($request);
 
         $this->categoriesService->create($request->input('name'), $request->input('description'));
@@ -54,7 +53,7 @@ class CategoriesController extends Controller
 
         $this->categoriesService->update($id, $request->input('name'), $request->input('description'));
 
-        return redirect(route('CategoriesController@categories'));
+        return redirect(route('CategoriesController@index'));
     }
 
     public function destroyView(string $id)
