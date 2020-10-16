@@ -6,38 +6,49 @@
     <span class="up icon-chevron-up1"></span>
 
     <div class="container">
-        <h1>Todas las categorias</h1>
+        <div class="center">
+            <h1>Todas las categorias</h1>
+        </div>
 
-        <table class="egt">
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </tr>
-            <tr>
-            @foreach($categories as $category)
+        <div class="center">
+            <table class="egt">
                 <tr>
-                    <td>{{ $category->getName() }}</td>
-                    <td>{{ $category->getDescription() }}</td>
-                    <td>
-                        <form action="{{ route('CategoriesController@editView', ['id' => $category->getId()]) }}">
-                            <input type="submit" class="button-primary" value="Editar">
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ route('CategoriesController@destroyView', ['id' => $category->getId()]) }}">
-                            <input type="submit" class="button-primary" value="Borrar">
-                        </form>
-                    </td>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
-            @endforeach
-        </table>
+                <tr>
+                @foreach($categories as $category)
+                    <tr>
+                        <td>{{ $category->getName() }}</td>
+                        <td>{{ $category->getDescription() }}</td>
+                        <td>
+                            <form action="{{ route('CategoriesController@editView', ['id' => $category->getId()]) }}">
+                                <input type="submit" class="button-primary" value="Editar">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ route('CategoriesController@destroyView', ['id' => $category->getId()]) }}">
+                                <input type="submit" class="button-primary" value="Borrar">
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
 
-        <form action="{{ route('CategoriesController@createView') }}">
-            <input type="submit" class="button-primary" value="Crear">
+        <div class="center">
+            <form action="{{ route('CategoriesController@createView') }}">
+                <div class="center">
+                    <input type="submit" class="button-primary" value="Crear">
+                </div>
+            </form>
+        </div>
+
+        <form action="{{ route('HomeController@home') }}">
+            <input type="submit" value="< Regresar">
         </form>
 
-        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection

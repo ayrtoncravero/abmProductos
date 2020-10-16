@@ -11,6 +11,14 @@
         <link rel="stylesheet" href="/ChangeModeColor/changeMode.css">
         <link rel="stylesheet" href="/Btn-up/fonts.css">
         <link rel="stylesheet" href="/Btn-up/style.css">
+
+        <link rel="stylesheet" href="/Btn-switch/fonts.css">
+        <link rel="stylesheet" href="/Btn-switch/style.css">
+
+        <link rel="stylesheet" href="/Style/customer.css">
+        <!--Style of border-->
+        <link rel="stylesheet" href="/Style/border.css">
+
         <title>@yield('title')</title>
     </head>
     <body>

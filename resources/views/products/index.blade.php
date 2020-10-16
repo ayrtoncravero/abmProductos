@@ -21,8 +21,7 @@
 
         <form action="{{ route('ProductsController@search') }}" method="GET" onsubmit="validation()">
             <label>Buscador</label>
-            <label>Nombre o descripcion:</label>
-            <input type="text" name="search" id="search"><br>
+            <input type="text" name="search" id="search" placeholder="Nombre o descripcion"><br>
             <input class="button-primary" type="submit" value="Buscar">
         </form><br>
 
@@ -65,7 +64,11 @@
         <form action="{{ route('ProductsController@createView') }}">
             <input class="button-primary" type="submit" value="Crear">
         </form>
-        <a href="{{ route('HomeController@home') }}">Regresar</a>
+
+        <form action="{{ route('HomeController@home') }}">
+            <input type="submit" value="< Regresar">
+        </form>
+
     </div>
 
     <script src="/Validations/Product/search.js"></script>

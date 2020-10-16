@@ -6,36 +6,45 @@
     <span class="up icon-chevron-up1"></span>
 
     <div class="container">
-        <h1>Todos los proveedores</h1>
+        <div class="center">
+            <h1>Todos los proveedores</h1>
+        </div>
 
-        <table class="egt">
-            <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-            </tr>
-            @foreach($providers as $provider)
+        <div class="center">
+            <table class="egt">
                 <tr>
-                    <td>{{  $provider->getCode() }}</td>
-                    <td>{{  $provider->getName() }}</td>
-                    <td>{{  $provider->getDescription() }}</td>
-                    <td>
-                        <form action="{{ route('ProvidersController@edit', ['id' => $provider->getId()]) }}">
-                            <input type="submit" class="button-primary" value="Editar">
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}">
-                            <input type="submit" class="button-primary" value="Borrar">
-                        </form>
-                    </td>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
                 </tr>
-            @endforeach
-        </table>
+                @foreach($providers as $provider)
+                    <tr>
+                        <td>{{  $provider->getCode() }}</td>
+                        <td>{{  $provider->getName() }}</td>
+                        <td>{{  $provider->getDescription() }}</td>
+                        <td>
+                            <form action="{{ route('ProvidersController@edit', ['id' => $provider->getId()]) }}">
+                                <input type="submit" class="button-primary" value="Editar">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ route('ProvidersController@destroyView', ['id' => $provider->getId()]) }}">
+                                <input type="submit" class="button-primary" value="Borrar">
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
 
-        <form action="{{ route('ProvidersController@createView') }}">
-            <input class="button-primary" type="submit" value="Crear">
+        <div class="center">
+            <form action="{{ route('ProvidersController@createView') }}">
+                <input class="button-primary" type="submit" value="Crear">
+            </form>
+        </div>
+
+        <form action="{{ route('HomeController@home') }}">
+            <input type="submit" value="< Regresar">
         </form>
-        <a href="{{ route('HomeController@home') }}">Regresar</a>
     </div>
 @endsection
