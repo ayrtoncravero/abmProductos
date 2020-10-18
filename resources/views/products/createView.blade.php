@@ -3,13 +3,13 @@
 @section('title', 'Crear nuevo producto')
 @section('body')
 
-    <div class="container">
+    <div class="container down-div">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Crear nuevo producto</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -21,7 +21,7 @@
             @endif
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProductsController@create') }}" method="POST" onsubmit="validation()">
                 @csrf
                 <label>Codigo:</label>
@@ -55,7 +55,7 @@
             </form>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProductsController@index') }}">
                 <input class="button-primary" type="submit" value="Cancelar">
             </form>

@@ -6,7 +6,7 @@
 
     <span class="up icon-chevron-up1"></span>
 
-    <div class="container">
+    <div class="container down-div">
         <h1>Todos los productos</h1>
 
         @if ($errors->any())

@@ -3,13 +3,13 @@
 @section('title', 'Editar proveedor')
 @section('body')
 
-    <div class="container">
+    <div class="container down-div">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Editar proveedor</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -22,7 +22,7 @@
         </div>
 
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProvidersController@update', ['id' => $provider->getId()]) }}" method="POST" onsubmit="validation()">
                 @csrf
                 <label>Codigo:</label>

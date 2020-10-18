@@ -6,11 +6,11 @@
     <span class="up icon-chevron-up1"></span>
 
     <div class="container">
-        <div class="center">
+        <div class="text-center">
             <h1>Todas las categorias</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <table class="egt">
                 <tr>
                     <th>Nombre</th>
@@ -38,7 +38,7 @@
             </table>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('CategoriesController@createView') }}">
                 <div class="center">
                     <input type="submit" class="button-primary" value="Crear">

@@ -4,11 +4,11 @@
 @section('body')
     <div class="container">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Eliminar producto</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
                 @method('DELETE')
                 @csrf
@@ -20,7 +20,7 @@
                 </div>
             </form>
         </div>
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProductsController@index') }}">
                 <input type="submit" class="button-primary" value="Cancelar">
             </form>

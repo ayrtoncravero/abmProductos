@@ -7,11 +7,11 @@
 
     <div class="container">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Productos con stock bajo</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <table class="egt">
                 <tr>
                     <th>Codigo</th>

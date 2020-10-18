@@ -3,13 +3,13 @@
 @section('title', 'Confirmar compra')
 @section('body')
 
-    <div class="container">
+    <div class="container down-div">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Confirmar compra</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -21,7 +21,7 @@
             @endif
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('PurchasesController@create') }}" method="POST" onsubmit="validation()">
                 @csrf
                 <label>Codigo:</label>
@@ -37,7 +37,7 @@
                 <label>Cantidad de productos:</label>
                 <input type="number" name="quantity" id="quantity" value="{{ old('quantity') }}"><br>
 
-                <div class="center">
+                <div class="text-center">
                     <input class="button-primary" type="submit" value="Comprar">
                 </div>
             </form>

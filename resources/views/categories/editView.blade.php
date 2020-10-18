@@ -3,13 +3,13 @@
 @section('title', 'Editar categoria')
 @section('body')
 
-    <div class="container">
+    <div class="container padre">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Editar categoria</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             @if ($errors->any())
                 <div>
                     <ul>
@@ -21,7 +21,7 @@
             @endif
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('CategoriesController@update', ['id' => $categories->getId()]) }}" method="POST" onsubmit="validation()">
                 @csrf
                 <label>Nombre</label>
@@ -30,7 +30,7 @@
                 <label>Descripcion</label>
                 <input type="text" name="description" id="description" value="{{ $categories->getDescription() }}"><br>
 
-                <div class="center">
+                <div class="text-center">
                     <input class="button-primary" type="submit" value="Editar">
                 </div>
 

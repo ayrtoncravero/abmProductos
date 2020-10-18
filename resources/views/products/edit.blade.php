@@ -5,11 +5,11 @@
 
     <div class="container">
 
-        <div class="center">
+        <div class="text-center">
             <h1>Editar producto</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -21,7 +21,7 @@
             @endif
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProductsController@update', ['id' => $product['id'] ]) }}" method="POST" onsubmit="validation()">
                 @csrf
                 <label>Codigo:</label>

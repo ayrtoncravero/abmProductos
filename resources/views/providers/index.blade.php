@@ -5,12 +5,13 @@
 
     <span class="up icon-chevron-up1"></span>
 
-    <div class="container">
-        <div class="center">
+    <div class="container down-div">
+
+        <div class="text-center">
             <h1>Todos los proveedores</h1>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <table class="egt">
                 <tr>
                     <th>Codigo</th>
@@ -37,7 +38,7 @@
             </table>
         </div>
 
-        <div class="center">
+        <div class="text-center">
             <form action="{{ route('ProvidersController@createView') }}">
                 <input class="button-primary" type="submit" value="Crear">
             </form>
