@@ -3,14 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Repository\ProductRepository;
-use Illuminate\Http\Request;
 
 class ReportsController extends Controller
 {
-    public function reports() {
-        return view('reports/reports');
+    /**
+     * @var productRepository
+     */
+    private $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
     }
-    public function stock(ProductRepository $productsRepository) {
-        return view('reports/stock', ['products' => $productsRepository->lowStock()]);
+
+    public function stock()
+    {
+        $productList = [];
+
+        $products = $this->productRepository->listProductsWithLOwStock();
+
+        foreach ($products as $product) {
+            array_push($productList, [
+                'id' => $product->getId(),
+                'code' => $product->getCode(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'price' => ($product->getPrice()->getAmount() / 100),
+                'stock' => $product->getStock(),
+                'provider' => $product->getProvider(),
+                'category' => $product->getCategory(),
+            ]);
+        }
+
+        return view('reports/stock', ['products' => $productList]);
     }
 }

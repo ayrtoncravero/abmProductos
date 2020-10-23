@@ -4,20 +4,20 @@
 namespace App\Repository;
 
 
-use App\Proveedor;
+use App\Provider;
 
 class ProviderRepository
 {
-    public function save(Proveedor $provider) {
+    public function save(Provider $provider) {
         $provider->save();
     }
 
     public function allProviders() {
-        return proveedor::query();
+        return Provider::query()->get();
     }
 
-    public function searchFindOrFail($id):proveedor {
-        return proveedor::findOrFail($id);
+    public function searchFindOrFail($id):Provider {
+        return Provider::findOrFail($id);
     }
 
     public function destroy($id) {

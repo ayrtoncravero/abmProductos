@@ -2,43 +2,67 @@
 
 @section('title', 'Editar producto')
 @section('body')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+
+    <div class="container">
+
+        <div class="text-center">
+            <h1>Editar producto</h1>
         </div>
-    @endif
-    <form action="{{ route('ProductsController@update', ['id' => $product->getId()]) }}" method="POST">
-        @csrf
-        <label>Codigo:</label><br>
-        <input type="text" name="code" value="{{ $product->getCode() }}"><br><br>
 
-        <label>Nombre:</label><br>
-        <input type="text" name="name" value="{{ $product->getName() }}"><br><br>
+        <div class="text-center">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
-        <label>Descripcion:</label><br>
-        <input type="text" name="description" value="{{ $product->getDescription() }}"><br><br>
+        <div class="text-center">
+            <form action="{{ route('ProductsController@update', ['id' => $product['id'] ]) }}" method="POST" onsubmit="validation()">
+                @csrf
+                <label>Codigo:</label>
+                <input type="text" name="code" id="code" value="{{ $product['code'] }}">
 
-        <label>Precio:</label><br>
-        <input type="number" name="price" value="{{ $product->getPrice() }}"><br><br>
+                <label>Nombre:</label>
+                <input type="text" name="name" id="name" value="{{ $product['name'] }}">
 
-        <label>Proveedores:</label><br>
-        <select name="providers">
-            @foreach($providers as $provider)
-                <option value="{{ $provider->id }}">{{ $provider->getName() }}</option>
-            @endforeach
-        </select><br>
+                <label>Descripcion:</label>
+                <input type="text" name="description" id="description" value="{{ $product['description'] }}">
 
-        <label>Categorias:</label><br>
-        <select name="category">
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->getName() }}</option>
-            @endforeach
-        </select><br>
+                <label>Precio:</label>
+                <input type="number" name="price" id="price" value="{{ $product['price'] }}">
 
-        <input type="submit" value="Editar">
-    </form>
+                <label>Proveedores:</label>
+                <select name="provider" id="provider">
+                    @foreach($providers as $provider)
+                        @if($provider->id === $product['provider']->id)
+                            <option selected value="{{ $provider->id }}">{{ $provider->getName() }}</option>
+                        @else
+                            <option value="{{ $provider->id }}">{{ $provider->getName() }}</option>
+                        @endif
+                    @endforeach
+                </select><br>
+
+                <label>Categorias:</label>
+                <select name="category" id="category">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->getName() }}</option>
+                    @endforeach
+                </select><br>
+
+                <input type="submit" value="Editar" class="button-primary">
+            </form>
+        </div>
+
+        <form action="{{ route('ProductsController@index') }}">
+            <input type="submit" value="< Regresar">
+        </form>
+
+    </div>
+
+    <script src="/Validations/Product/product.js"></script>
 @endsection

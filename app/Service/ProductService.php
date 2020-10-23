@@ -1,136 +1,133 @@
 <?php
 namespace App\Repository;
 
-use App\Producto;
-use Dotenv\Exception\ValidationException;
+use App\Product;
+use Illuminate\Validation\ValidationException;
+use Money\Currency;
+use Money\Money;
 
 class ProductService
 {
-    private $productRespository;
+    private $productRepository;
+    private $providerRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository, ProviderRepository $providerRepository, CategoryRepository $categoryRepository)
     {
-        $this->productRespository = $productRepository;
+        $this->productRepository = $productRepository;
+        $this->providerRepository = $providerRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
-    public function create(string $code, string $name, string $description,float $price, string $provider, string $category)
+    public function create(string $code, string $name, string $description,Money $price, string $provider, string $category)
     {
-        $this->validatorCode($code);
-        $this->validatorName($name);
-        $this->validatorDescription($description);
-        $this->validatorPrice($price);
-        $this->validatorProvider($provider);
-        $this->validatorCategory($category);
+        $this->validateAll($code, $name, $description, $price, $provider, $category);
 
-        //Para ver que exista en la DB el provider y la category
-        $product = $this->productRespository->searchFindOrFail($provider);
-        $product = $this->productRespository->searchFindOrFail($category);
-
-        $product = new Producto();
+        $product = new Product();
 
         $product->setCode($code);
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
-        $product->setProvider($provider);
-        $product->setCategory($category);
 
-        $this->productRespository->save($product);
+        $providerEntity = $this->providerRepository->searchFindOrFail($provider);
+        $categoryEntity = $this->categoryRepository->searchFindOrFail($category);
+
+        $product->setProvider($providerEntity);
+        $product->setCategory($categoryEntity);
+
+        $this->productRepository->save($product);
     }
 
-    public function update(string $id, string $code, string $name, string $description,float $price, string $provider, string $category) {
+    public function update(string $id, string $code, string $name, string $description,Money $price, string $provider, string $category) {
 
-        $this->validatorName($code);
-        $this->validatorName($name);
-        $this->validatorName($description);
-        $this->validatorName($price);
-        $this->validatorName($provider);
-        $this->validatorName($category);
+        $this->validateAll($code, $name, $description, $price, $provider, $category);
 
-        $product = $this->productRespository->searchFindOrFail($id);
+        $product = $this->productRepository->findOrFail($id);
 
         $product->setCode($code);
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
-        $product->setProvider($provider);
-        $product->setCategory($category);
 
-        $this->productRespository->save($product);
+        $providerEntity = $this->providerRepository->searchFindOrFail($provider);
+        $categoryEntity = $this->categoryRepository->searchFindOrFail($category);
+
+        $product->setProvider($providerEntity);
+        $product->setCategory($categoryEntity);
+
+        $this->productRepository->save($product);
     }
 
-
-
-    #----LAS VALIDACIONES VAN EN UNA SOLA FUNCION----
-    //REVISAR TODAS LAS VALIDACIONES
-    public function validatorCode(string $code) {
+    public function validateAll(string $code, string $name, string $description, Money $price, string $provider, string $category) {
         if ($code === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'code' => 'Codigo no declarado',
             ]);
         }
-        if (strelen($code) !== 6) {
-            throw ValidationException::whithMessage([
+        if (strlen($code) !== 6) {
+            throw ValidationException::withMessages([
                 'code' => 'El codigo minimo debe de tener 6 caracteres',
             ]);
         }
-        if (strelen($code) > 6) {
-            throw ValidationException::whithMessage([
+        if (strlen($code) > 6) {
+            throw ValidationException::withMessages([
                 'code' => 'Codigo debe de tener maximo 6 caracteres',
             ]);
         }
-    }
 
-    public function validatorName(string $name) {
+        $product =  $this->productRepository->searchByCode($code);
+
+        if (isset($product)) {
+            throw ValidationException::withMessages([
+                'code' => 'El codigo ya existe',
+            ]);
+        }
+
         if ($name === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'name' => 'Nombre no declarado',
             ]);
         }
-        if (strelen($name)) {
-            throw ValidationException::whithMessage([
+        if (strlen($name) <= 0) {
+            throw ValidationException::withMessages([
                 'name' => 'El nombre no puede ser vacio',
             ]);
         }
-    }
 
-    public function validatorDescription(string $description) {
         if ($description === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'description' => 'Descripcion no declarado',
             ]);
         }
-        if (strelen($description)) {
-            throw ValidationException::whithMessage([
+        if (strlen($description) <= 0) {
+            throw ValidationException::withMessages([
                 'description' => 'La descripcion no puede ser vacio',
             ]);
         }
-    }
 
-    public function validatorPrice(float $price) {
-        if ($price === null) {
-            throw ValidationException::whithMessage([
+        if ($price->isZero()) {
+            throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser vacio',
             ]);
         }
-        if ($price <= 0) {
-            throw ValidationException::whithMessage([
+        if ($price->isNegative()) {
+            throw ValidationException::withMessages([
                 'price' => 'El precio no puede ser cero, ni menor a cero',
             ]);
         }
-    }
 
-    public function validatorProvider(string $provider) {
         if ($provider === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'provider' => 'El provedor no puede ser vacio',
             ]);
         }
-    }
 
-    public function validatorCategory(string $category) {
         if ($category === null) {
-            throw ValidationException::whithMessage([
+            throw ValidationException::withMessages([
                 'category' => 'La categoria no puede ser vacia',
             ]);
         }

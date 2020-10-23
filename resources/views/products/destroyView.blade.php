@@ -1,13 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Eliminar producto')
+@section('title', 'Eliminar productos')
 @section('body')
-    @include('errors')
-    <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
-        @method(DELETE)
-        @csrf
-        <p>¿Esta seguro de que desea eliminar el producto?</p>
-        <input type="submit" value="Eliminar">
-        <a href="ProductsController@products">Cancelar</a>
-    </form>
+    <div class="container">
+
+        <div class="text-center">
+            <h1>Eliminar producto</h1>
+        </div>
+
+        <div class="text-center">
+            <form action="{{ route('ProductsController@destroy', ['id' => $product->getId()]) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <p>¿Esta seguro de que desea eliminar el producto?</p>
+                <p>Codigo: {{ $product->getCode() }}</p>
+                <p>Nombre: {{ $product->getName() }}</p>
+                <div class="center">
+                    <input type="submit" class="button-primary" value="Borrar"><br>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <form action="{{ route('ProductsController@index') }}">
+                <input type="submit" class="button-primary" value="Cancelar">
+            </form>
+        </div>
+    </div>
 @endsection

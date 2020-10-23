@@ -2,137 +2,146 @@
 
 namespace App\Http\Controllers;
 
-use App\Compra;
-use App\Producto;
+use App\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ProductService;
 use App\Repository\ProviderRepository;
 use Illuminate\Http\Request;
-use App\Categoria;
-use App\Proveedor;
+use Money\Currency;
+use Money\Money;
 
 class ProductsController extends Controller
 {
-    #Reacomodando
-    public function productsNew(ProviderRepository $providerRepository, CategoryRepository $categoryRepository)
+    /**
+     * @var providerRepository
+     */
+    private $providerRespository;
+    /**
+     * @var categoryRepository
+     */
+    private $categoryRepository;
+    /**
+     * @var productRepository
+     */
+    private $productRepository;
+    /**
+     * @var productService
+     */
+    private $productService;
+
+    public function __construct(ProviderRepository $repositoryProvider, CategoryRepository $repositoryCategory, ProductRepository $productRepository, ProductService $productService)
     {
-        return view('products/productsNew', ['providers' => $providerRepository->allProviders(), 'categories' => $categoryRepository->allCategory()]);
+        $this->providerRespository = $repositoryProvider;
+        $this->categoryRepository = $repositoryCategory;
+        $this->productRepository = $productRepository;
+        $this->productService = $productService;
     }
 
-    public function create(Request $request, ProductService $service)
+    public function createView()
     {
-        //Esta validacion esta aqui solo por que es propia del code, per va tambien al service
+        return view('products/createView', ['providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
+    }
+
+    public function create(Request $request)
+    {
         $this->validateRequest($request);
 
-        $service->create($request->input('code'),
+        $this->productService->create($request->input('code'),
             $request->input('name'),
             $request->input('description'),
-            $request->input('price'),
+            new Money($request->input('price') * 100, new Currency('ARS')),
             $request->input('provider'),
             $request->input('category')
         );
 
-        //Retorno a la vista por que ya se creo el producto
-        return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
-    public function products(ProductRepository $productRepository)
+    public function index()
     {
-        return view('products/products', ['products' => $productRepository->allProducts()]);
+        $productList = [];
+
+        $products = $this->productRepository->listAllProducts();
+
+        foreach ($products as $product) {
+            array_push($productList, [
+                'id' => $product->getId(),
+                'code' => $product->getCode(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'price' => ($product->getPrice()->getAmount() / 100),
+                'stock' => $product->getStock(),
+                'provider' => $product->getProvider(),
+                'category' => $product->getCategory(),
+            ]);
+        }
+
+        return view('products/index', [ 'products' => $productList ]);
     }
 
-    public function edit(string $id, ProductRepository $repository)
+    public function edit(string $id)
     {
-        return view('edit', ['product' => $repository->searchFindOrFail($id)]);
+        $product = $this->productRepository->findOrFail($id);
 
-        #Antes
-        //$product = Producto::find($id);
-        //$providers = Proveedor::query()->get()->all();
-        //$category = Categoria::query()->get()->all();
-        //return view('products/productsEdit', ['product' => $product, 'providers' => $providers, 'categories' => $category]);
+        return view('products/edit', ['product' => [
+            'id' => $product->getId(),
+            'code' => $product->getCode(),
+            'name' => $product->getName(),
+            'description' => $product->getDescription(),
+            'price' => ($product->getPrice()->getAmount() / 100),
+            'stock' => $product->getStock(),
+            'provider' => $product->getProvider(),
+            'category' => $product->getCategory(),
+        ], 'providers' => $this->providerRespository->allProviders(), 'categories' => $this->categoryRepository->findAll()]);
     }
 
-    public function update(Request $request, string $id, ProductService $service)
+    public function update(Request $request, string $id)
     {
         $this->validateRequest($request);
 
-        $service->update($id, $request->input('code'), $request->input('name'), $request->input('description'), $request->input('price'), $request->input('provider'), $request->input('category'));
+        $this->productService->update($id,
+            $request->input('code'),
+            $request->input('name'),
+            $request->input('description'),
+            new Money($request->input('price') * 100, new Currency('ARS')),
+            $request->input('provider'),
+            $request->input('category')
+        );
 
-        return redirect(route('ProductsController@products'));
-
-        #Antes
-        //$code = $request->input('code');
-
-        //$product = Producto::query()->where('code', '=', $code)->first();
-
-        //if (isset($product) && $product->getId() !== (int)$id) {
-        //    return redirect()->back()->withErrors(['code' => 'the code has already been taken']);
-        //}
-
-        //$name = $request->input('name');
-        //$description = $request->input('description');
-        //$price = $request->input('price');
-        //$providerId = $request->input('providers');
-        //$categoryId = $request->input('category');
-
-        //$productEdit = Producto::find($id);
-
-        //$provider = Proveedor::find($providerId);
-        //$category = Categoria::find($categoryId);
-
-        //$productEdit->setCode($code);
-        //$productEdit->setName($name);
-        //$productEdit->setDescription($description);
-        //$productEdit->setPrice($price);
-        //$productEdit->setProvider($provider);
-        //$productEdit->setCategory($category);
-
-        //$productEdit->save();
-
-        //return redirect(route('ProductsController@products'));
+        return redirect(route('ProductsController@index'));
     }
 
-    public function destroyView(string $id, ProductRepository $repository) {
-
-        return view('products/destroyView', ['product' =>$repository->searchFindOrFail($id)]);
+    public function destroyView(string $id)
+    {
+        return view('products/destroyView', ['product' => $this->productRepository->findOrFail($id)]);
     }
 
-    public function destroy(string $id, ProductRepository $repository) {
-        $repository->destroy($id);
-        return redirect(route('ProductsController@products'));
+    public function destroy(string $id)
+    {
+        $this->productRepository->destroy($id);
+
+        return redirect(route('ProductsController@index'));
     }
 
     public function search(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $search = $request->input("search");
 
-        $product = Producto::where([
-            ['name', 'like', '%' . $request->query('name') . '%'],
-            ['description', 'like', '%' . $request->query('name') . '%']
-        ])->get();
+        $products = $this->productRepository->searchByNameAndDescription($search);
 
-        return view('products/products', ['product' => $product]);
+        return view('products/index', ['products' => $products]);
     }
 
-    public function validateRequest(Request $request) {
+    public function validateRequest(Request $request)
+    {
         $request->validate([
             'code' => 'required',
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'providers' => 'required',
+            'provider' => 'required',
             'category' => 'required',
         ]);
     }
-
-
-
-
-
-
-
-
 }

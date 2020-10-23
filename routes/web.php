@@ -13,51 +13,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Cambiar esto para que muestre todos los productos enseguida, o meter un inicio mas lindo
 Route::get('/', function () {
     return view('welcome');
 });
 
-#Home
 Route::get('/home', 'HomeController@home')->name('HomeController@home');
 
-#Provider
-#REACOMODADO
-Route::get('/providers/new', 'ProvidersController@providersNew')->name('ProvidersController@providersNew');
+Route::get('/providers/new', 'ProvidersController@createView')->name('ProvidersController@createView');
 Route::post('/providers', 'ProvidersController@create')->name('ProvidersController@create');
-Route::get('/providers', 'ProvidersController@providers')->name('ProvidersController@providers');
+Route::get('/providers', 'ProvidersController@index')->name('ProvidersController@index');
 Route::get('/providers/{id}/edit', 'ProvidersController@edit')->name('ProvidersController@edit');
 Route::post('/providers/{id}', 'ProvidersController@update')->name('ProvidersController@update');
 Route::get('/providers/{id}/destroyView', 'ProvidersController@destroyView')->name('ProvidersController@destroyView');
 Route::delete('/providers/{id}/destroy', 'ProvidersController@destroy')->name('ProvidersController@destroy');
 
-#Category
-#REACOMODADO
-Route::get('/categorys/new', 'CategorysController@categorysNew')->name('CategorysController@categorysNew');
-Route::post('/categorys', 'CategorysController@create')->name('CategorysController@create');
-Route::get('/categorys', 'CategorysController@categorys')->name('CategorysController@categorys');
-Route::get('/categorys/{id}/edit', 'CategorysController@edit')->name('CategorysController@edit');
-Route::post('/categorys/{id}', 'CategorysController@update')->name('CategorsyController@update');
-Route::get('categorys/{id}/destroyView', 'CategoryController@destroyView')->name('CategoryController@destroyView');
-Route::delete('/categorys/{id}/destroy', 'CategorysController@destroy')->name('CategorysController@destroy');
+Route::get('/categories/new', 'CategoriesController@createView')->name('CategoriesController@createView');
+Route::post('/categories', 'CategoriesController@create')->name('CategoriesController@create');
+Route::get('/categories', 'CategoriesController@index')->name('CategoriesController@index');
+Route::get('/categories/{id}/edit', 'CategoriesController@editView')->name('CategoriesController@editView');
+Route::post('/categories/{id}', 'CategoriesController@update')->name('CategoriesController@update');
+Route::get('categories/{id}/destroyView', 'CategoriesController@destroyView')->name('CategoriesController@destroyView');
+Route::delete('/categories/{id}/destroy', 'CategoriesController@destroy')->name('CategoriesController@destroy');
 
-#View products
-#REACOMODADO
-Route::get('/products/new', 'ProductsController@productsNew')->name('ProductsController@productsNew');
+Route::get('/products/new', 'ProductsController@createView')->name('ProductsController@createView');
 Route::post('/products', 'ProductsController@create')->name('ProductsController@create');
-Route::get('/products', 'ProductsController@products')->name('ProductsController@products');
+Route::get('/products', 'ProductsController@index')->name('ProductsController@index');
 Route::get('/products/{id}/edit', 'ProductsController@edit')->name('ProductsController@edit');
 Route::post('/products/{id}', 'ProductsController@update')->name('ProductsController@update');
 Route::get('/products/{id}/destroyView', 'ProductsController@destroyView')->name('ProductsController@destroyView');
 Route::delete('/products/{id}/destroy', 'ProductsController@destroy')->name('ProductsController@destroy');
 Route::get('/search', 'ProductsController@search')->name('ProductsController@search');
 
-#FALTA REVISAR ESTE
-#Dar de alta una compra
-Route::get('/purchases', 'PurchasesController@purchases')->name('PurchasesController@purchases');
-Route::post('/purchases', 'PurchasesController@purchasesCreate')->name('PurchasesController@purchasesCreate');
+Route::get('/purchases', 'PurchasesController@createView')->name('PurchasesController@createView');
+Route::post('/purchases', 'PurchasesController@create')->name('PurchasesController@create');
+Route::get('/stock', 'PurchasesController@index')->name('PurchasesController@index');
+Route::post('/stock', 'PurchasesController@stock')->name('PurchasesController@stock');
 
-#FALTA REVISAR ESTE
-#Ver informes
-Route::get('/reports', 'ReportsController@reports')->name('ReportsController@reports');
 Route::get('/reports/stock', 'ReportsController@stock')->name('ReportsController@stock');

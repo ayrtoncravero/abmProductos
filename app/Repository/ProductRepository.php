@@ -2,31 +2,45 @@
 
 namespace App\Repository;
 
-use App\Producto;
+use App\Product;
 
 class ProductRepository
 {
-    public function save(Producto $product) {
+    public function save(Product $product) {
         $product->save();
     }
 
-    public function allProducts() {
-        return Producto::query();
+    /**
+     * @return Product[]
+     */
+    public function listAllProducts() {
+        return Product::query()->get();
     }
 
-    public function searchFindOrFail($id):Producto {
-        return Producto::findOrFail($id);
+    public function findOrFail($id):Product {
+        return Product::findOrFail($id);
     }
 
     public function destroy($id) {
-        $product = $this->searchFindOrFail($id);
+        $product = $this->findOrFail($id);
         $product->delete();
     }
 
-    //Traer aca la busqueda del producto por descripcion y nombre
+    public function searchByNameAndDescription($search) {
+        $query = Product::query()->where('name', 'like', "%$search%");
+        $query->orWhere('description', 'like', "%$search%");
+        return $query->get();
+    }
 
+    public function listProductsWithLOwStock() {
+        return Product::where('stock', '<=', 5)->get();
+    }
 
-    public function lowStock() {
-        return Producto::where('stock', '<=', 0)->get();
+    public function searchByCodeOrFail(string $code):Product {
+        return Product::query()->where('code', '=', $code)->firstOrFail();
+    }
+
+    public function searchByCode(string $code): ?Product {
+        return Product::query()->where('code', '=', $code)->first();
     }
 }

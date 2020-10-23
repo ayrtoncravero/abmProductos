@@ -1,10 +1,20 @@
 @extends('layouts.app')
 
 @section('title', 'Home')
+
 @section('body')
-    <a href="{{ URL::route('ProductsController@products') }}">Ver productos</a><br><br>
-    <a href="{{ URL::route('ProvidersController@providers') }}">Ver proveedores</a><br><br>
-    <a href="{{ URL::route('CategorysController@categorys') }}">Ver categoria</a><br><br>
-    <a href="{{ URL::route('PurchasesController@purchases') }}">Dar de alta una compra</a><br><br>
-    <a href="{{ URL::route('ReportsController@reports') }}">Ver informes</a><br><br>
+
+    <div>
+        <input type="submit" onclick="changeMode()" value="Claro/Oscuro" class="button-primary u-pull-right">
+    </div>
+    <br>
+    <div class="padre text-center">
+            <div class="center"><a href="{{ URL::route('ProductsController@index') }}">Ver productos</a></div><br>
+            <div class="center"><a href="{{ URL::route('ProvidersController@index') }}">Ver proveedores</a></div><br>
+            <div class="center"><a href="{{ URL::route('CategoriesController@index') }}">Ver categoria</a></div><br>
+            <div class="center"><a href="{{ URL::route('PurchasesController@createView') }}">Dar de alta una compra</a></div><br>
+            <div class="center"><a href="{{ URL::route('PurchasesController@index') }}">Agregar stock</a></div><br>
+            <div class="center"><a href="{{ URL::route('ReportsController@stock') }}">Ver informes</a></div>
+    </div>
+
 @endsection
